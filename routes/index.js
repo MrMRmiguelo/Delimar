@@ -6,7 +6,7 @@ const routes = express.Router();
 
 const proyectosController = require("../controller/delimarcontroller");
 
-module.experts = function () {
+module.exports = function () {
     routes.get("/", function (req, res, next) {
         res.send("Bienvenido");
     });
