@@ -2,17 +2,16 @@
 
 const express = require("express");
 
-const routes = require("./routes")
+//const routes = require("./routes")
 
 // App de express
 
 const app = express();
 
-app.use("/", routes())
+//app.use("/", routes());
 
 // Inicializar
 
 app.listen(7000, () => {
-
-    console.log("servidor ejecutandose en 7000");
+     console.log("servidor ejecutandose en 7000");
 });

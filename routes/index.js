@@ -13,6 +13,6 @@ module.experts = function () {
 
     routes.get("/prueba",function (req,res,next){
         res.send("Probando");
-    })
+    });
     return routes;
 }
