@@ -9,10 +9,11 @@ const routes = require("./routes");
 
 const app = express();
 
+//Rutas para el servidor
 app.use("/", routes());
 
 // Inicializar
 
 app.listen(7000, () => {
-     console.log("servidor ejecutandose en 7000");
+     console.log("Server running on port 7000");
 });

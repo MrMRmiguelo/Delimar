@@ -1,19 +1,14 @@
 // Importar express router
-const express = require("express");
+const express = require("express"); 
 const routes = express.Router();
 
 
-//importar los controladores
-
-const proyectosController = require("../controller/delimarcontroller");
+// Importar los controladores
+const proyectosController = require("../controller/delimarController");
 
 module.exports = function () {
-    routes.get("/", function (req, res, next) {
-        res.send("Bienvenido");
-    });
+    routes.get("/", proyectosController.home);
 
-    routes.get("/prueba",function (req,res,next){
-        res.send("Probando");
-    });
+    routes.get("/prueba", proyectosController.prueba);
     return routes;
 }
