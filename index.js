@@ -6,6 +6,10 @@ const routes = require("./routes");
 
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
+
+//Importar los modelos de productos
+require("./models/productmodel");
+
 // Conexion mediante promesas
 db.sync()
      .then(() => console.log("Connected to the database server"))
