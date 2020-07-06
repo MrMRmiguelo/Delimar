@@ -1,6 +1,7 @@
 // Importar los modulos de express.js
 const express = require("express");
-
+//Importar Handlebars
+const exphbs = require("express-handlebars");
 //Importar todas las rutas de routes
 const routes = require("./routes");
 
@@ -17,6 +18,10 @@ db.sync()
 
 // App de express
 const app = express();
+
+// Template engine (Handlebars)
+
+app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
 
 //Rutas para el servidor
 app.use("/", routes());
