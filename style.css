@@ -93,3 +93,74 @@ section {
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
 }
+
+
+.catalogo-container:hover img{
+    -moz-transforms: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.catalogo-details{
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    z-index: 9000;
+}
+
+.portafolio-details h2{
+    margin-bottom: 8px;
+}
+
+.catalogo-details a h2, .portafolio-details a p{
+    color: #F7BD3B;
+}
+
+h2{
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+}
+
+.member-container{
+    position: relative;
+    margin: 10px 0;
+}
+
+.member-details{
+    position: absolute;
+    color: #ffffff;
+    bottom: 0px;
+    left: 20px;
+}
+
+.member-details span{
+    font-size: 14px;
+}
+
+.member-details i {
+    padding: 0 5px;
+}
+
+.pricing-container {
+    margin: 15px 0;
+}
+
+.plans{
+    padding: 50px 80px;
+    border-radius: 2px;
+    min-width: 450px;
+}
+
+
+@media (max-width: 575.98px) { 
+    h1{ font-size: 48px; line-height: normal;}
+ }
+
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+@media (min-width: 768px) and (max-width: 991.98px) { ... }
+
+@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+
+@media (min-width: 1200px) { ... }
