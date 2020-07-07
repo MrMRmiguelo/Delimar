@@ -16,7 +16,7 @@ module.exports = function () {
 
     routes.get("/crear_usuario", usuariosController.crearCuentaAdmin);
 
-    routes.post("/crear_usuario", usuariosController.crearCuenta);
+    routes.post("/crear_usuario", usuariosController.crearUsuario);
 
     return routes;
 }

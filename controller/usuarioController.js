@@ -4,8 +4,8 @@ exports.crearCuentaAdmin = (req, res, next) =>{
     res.render("crearUsuario", {layout: "autenticacion"});
 }
 
-exports.crearCuenta = async(req, res, next) => {
-    const {fullname, user, password} = req.body;
+exports.crearUsuario = async(req, res, next) => {
+    const { fullname, user, password } = req.body;
 
     try {
         await Usuario.create({
@@ -14,7 +14,7 @@ exports.crearCuenta = async(req, res, next) => {
             password
         });
 
-        res.redirect("iniciarSesion", {layout: "autenticacion"});
+        res.render("iniciarSesion", {layout: "autenticacion"});
     } catch (error) {
         res.render("crearUsuario", {
             error,
