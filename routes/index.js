@@ -18,7 +18,7 @@ module.exports = function () {
 
     routes.post("/crear_usuario", usuariosController.crearUsuario);
     
-    routes.get("/agregar_producto" ,productosController.homeagregarproducto);
+    routes.post("/agregar_producto" ,productosController.homeagregarproducto);
 
 
     return routes;
