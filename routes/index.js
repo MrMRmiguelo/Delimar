@@ -4,11 +4,19 @@ const routes = express.Router();
 
 
 // Importar los controladores
-const proyectosController = require("../controller/delimarController");
+const productosController = require("../controller/delimarController");
+const usuariosController =  require("../controller/usuarioController");
 
 module.exports = function () {
-    routes.get("/", proyectosController.home);
+    routes.get("/", productosController.home);
 
-    routes.get("/prueba", proyectosController.prueba);
+    routes.get("/prueba", productosController.prueba);
+
+    routes.get("/homeproductos", productosController.homeproductos);
+
+    routes.get("/crear_usuario", usuariosController.crearCuentaAdmin);
+
+    routes.post("/crear_usuario", usuariosController.crearUsuario);
+
     return routes;
 }
