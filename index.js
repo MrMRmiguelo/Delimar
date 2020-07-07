@@ -10,6 +10,7 @@ const db = require("./config/db");
 
 //Importar los modelos de productos
 require("./models/productmodel");
+require("./models/usuario");
 
 // Conexion mediante promesas
 db.sync()

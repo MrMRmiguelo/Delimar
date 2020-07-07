@@ -57,4 +57,3 @@ const Usuario = db.define("usuario",
 
 // Exportar el modulo
 module.exports = Usuario;
-
