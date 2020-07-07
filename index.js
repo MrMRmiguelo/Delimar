@@ -13,15 +13,19 @@ require("./models/productmodel");
 
 // Conexion mediante promesas
 db.sync()
-     .then(() => console.log("Connected to the database server"))
+     .then(() => console.log("Connected to the server database"))
      .catch((error) => console.log(error));
 
 // App de express
 const app = express();
 
-// Template engine (Handlebars)
+//Carpeta de archivos estaticos
+app.use(express.static("public"));
 
+// Template engine (Handlebars)
 app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
+
+app.set("view engine", "hbs");
 
 //Rutas para el servidor
 app.use("/", routes());
