@@ -1,0 +1,51 @@
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+      <a class="navbar-brand" href="#"><img src="/imagenes/delimar.png" class="logo-brand" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="catalogo">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="info">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="contacto">Contactanos</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+    </nav>
+</header>
+
+<form class="form-signin" method="POST" action="">
+    <div class="mb-4 text-center">
+        <h1>Añadir nuevo producto Delimar</h1>
+        <p>Bienvenido al servicio de administrador de productos Delimar</p>
+    </div>
+    <div class="form-label-group">
+        <label for="user">Nombre del Producto</label>
+        <input type="text" name="productname" id="productname" placeholder="Nombre de producto" required>
+    </div>
+    <div class="form-label-group">
+        <label for="price">Precio</label>
+        <input type="number" name="price" id="price" placeholder="Precio" required>
+        <label for="lb">$</label>
+    </div>
+    <div class="form-label-group">
+        <label for="cantidadinventario">Libras</label>
+        <input type="number" name="cantidadinventario" id="cantidadinventario" placeholder="Libras" required>
+        <label for="lb">lbs</label>
+    </div>
+    <div class="mb3">
+        <button class="btn btn-sm btn-primary btn-block" type="submit" style="background-color: #00B9C9;">Guardar</button>
+    </div>
+</form>

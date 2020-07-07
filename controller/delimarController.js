@@ -9,3 +9,7 @@ exports.prueba = (req, res, next) => {
 exports.homeproductos = (req, res, next) => {
     res.render("homeproductos");
 };
+
+exports.homeagregarproducto = (req, res, next) => {
+     res.render("homeAgregarProductos");
+};
