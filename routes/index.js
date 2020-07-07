@@ -10,5 +10,8 @@ module.exports = function () {
     routes.get("/", productosController.home);
 
     routes.get("/prueba", productosController.prueba);
+
+    routes.get("/homeproductos", productosController.homeproductos);
+    
     return routes;
 }
