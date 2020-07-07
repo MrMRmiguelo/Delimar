@@ -4,12 +4,14 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 //Importar todas las rutas de routes
 const routes = require("./routes");
+const bodyParser = require("body-parser");
 
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
 
 //Importar los modelos de productos
 require("./models/productmodel");
+require("./models/usuario");
 
 // Conexion mediante promesas
 db.sync()
@@ -26,6 +28,8 @@ app.use(express.static("public"));
 app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
 
 app.set("view engine", "hbs");
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Rutas para el servidor
 app.use("/", routes());
