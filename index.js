@@ -19,6 +19,9 @@ db.sync()
 // App de express
 const app = express();
 
+//Carpeta de archivos estaticos
+app.use(express.static("public"));
+
 // Template engine (Handlebars)
 app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
 
