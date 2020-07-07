@@ -4,11 +4,11 @@ const routes = express.Router();
 
 
 // Importar los controladores
-const proyectosController = require("../controller/delimarController");
+const productosController = require("../controller/delimarController");
 
 module.exports = function () {
-    routes.get("/", proyectosController.home);
+    routes.get("/", productosController.home);
 
-    routes.get("/prueba", proyectosController.prueba);
+    routes.get("/prueba", productosController.prueba);
     return routes;
 }

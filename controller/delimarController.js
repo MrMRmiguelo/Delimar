@@ -1,5 +1,5 @@
 exports.home = (req, res, next) => {
-    res.send("Bienvenido!");
+    res.render("paginaPrincipal");
 };
 
 exports.prueba = (req, res, next) => {
