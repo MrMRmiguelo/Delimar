@@ -11,5 +11,5 @@ exports.homeproductos = (req, res, next) => {
 };
 
 exports.homeagregarproducto = (req, res, next) => {
-     res.render("homeAgregarProductos");
+     res.render("homeagregarproductos");
 };
