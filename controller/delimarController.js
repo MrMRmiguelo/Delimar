@@ -1,3 +1,5 @@
+const Producto = require("../models/productmodel");
+
 exports.home = (req, res, next) => {
     res.render("paginaPrincipal");
 };
@@ -8,8 +10,4 @@ exports.prueba = (req, res, next) => {
 
 exports.homeproductos = (req, res, next) => {
     res.render("homeproductos");
-};
-
-exports.homeagregarproducto = (req, res, next) => {
-     res.render("homeagregarproductos");
 };

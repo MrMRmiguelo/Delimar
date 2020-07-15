@@ -22,27 +22,28 @@ const Producto = db.define("producto", {
     },
     libra: {
         type: Sequelize.FLOAT
-    },
-    url:{
-        type: Sequelize.STRING
     }
+    // url:{
+    //     type: Sequelize.STRING
+    // }
 }, 
-{
-    hooks: {
-        beforeCreate(producto) {
-            console.log("Antes de insertar a la base de datos");
-            const url = slug(producto.name).toLowerCase();
+// {
+//     hooks: {
+//         beforeCreate(producto) {
+//             console.log("Antes de insertar a la base de datos");
+//             const url = slug(producto.name).toLowerCase();
 
-            producto.url = `${url}_${shortid.generate()}`;
-        },
-        beforeUpdate(producto){
-            console.log("Antes de actualizar en la base");
-            const url = slug(producto.name).toLowerCase();
+//             producto.url = `${url}_${shortid.generate()}`;
+//         },
+//         beforeUpdate(producto){
+//             console.log("Antes de actualizar en la base");
+//             const url = slug(producto.name).toLowerCase();
 
-            producto.url = `${url}_${shortid.generate()}`;
-        }
-    },
-});
+//             producto.url = `${url}_${shortid.generate()}`;
+//         }
+//     },
+// }
+);
 
 // Importar el modelo para su utilizacion
 module.exports = Producto;
