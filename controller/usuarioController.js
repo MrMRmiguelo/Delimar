@@ -14,7 +14,7 @@ exports.crearUsuario = async(req, res, next) => {
             password
         });
 
-        res.render("iniciarSesion", {layout: "autenticacion"});
+        res.render("homeproductos", {layout: "autenticacion"});
     } catch (error) {
         res.render("crearUsuario", {
             error,
