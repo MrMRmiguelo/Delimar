@@ -22,6 +22,8 @@ module.exports = function () {
     routes.get("/agregar_producto", productosController.agregarproducto);
 
     routes.post("/agregar_producto", productosController.homeagregarproductos);
+    
+    routes.get("/lista_producto", delimarController.lista);
 
     return routes;
 }
