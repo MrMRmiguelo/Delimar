@@ -6,18 +6,31 @@ exports.agregarproducto = (req, res, next) => {
 
 exports.homeagregarproductos = async(req, res, next) => {
    const { name, price, libra } = req.body;
+   const errores = [];
 
-   try {
-       await Producto.create({
-           name,
-           price,
-           libra
-       });
+   if (!name){
+       errores.push({error: "El nombre del proyecto no puede ser vacio."});
+   }
 
-       res.render("homeproductos", {layout: "autenticacion"});
-   } catch (error) {
-       res.render("homeagregarproductos", {
-           error,
-       })
+   //Si hay algun error
+   if(errores.length){
+    res.render("homeagregarproductos", {
+        errores,
+    });
+   } else{
+       //insertar los datos en la base de datos de productos
+       try {
+        await Producto.create({
+            name,
+            price,
+            libra
+        });
+ 
+        res.render("homeproductos", {layout: "autenticacion"});
+    } catch (error) {
+        res.render("homeagregarproductos", {
+            error,
+        })
+    }
    }
 }

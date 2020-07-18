@@ -62,8 +62,8 @@ section {
 .nav-toggler:focus { outline: none; }
 
 #hero {
-    background-image: url('imagenes/portadasv.jpg');
-    background-size:cover ;
+    background-image: url(/public/imagenes/portadasv.jpg);
+    background-size: cover ;
     margin-top: 90px;
     margin-bottom: 30px;
     padding-top: 90px ;
