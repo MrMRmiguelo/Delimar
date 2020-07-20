@@ -5,7 +5,7 @@ exports.agregarproducto = (req, res, next) => {
 };
 
 exports.homeagregarproductos = async(req, res, next) => {
-   const { name, price, libra } = req.body;
+   const { name, price, libra, description } = req.body;
    const errores = [];
 
    if (!name){
@@ -23,7 +23,8 @@ exports.homeagregarproductos = async(req, res, next) => {
         await Producto.create({
             name,
             price,
-            libra
+            libra,
+            description
         });
  
         res.render("homeproductos", {layout: "autenticacion"});
