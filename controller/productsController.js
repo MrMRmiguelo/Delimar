@@ -1,4 +1,5 @@
 const Producto = require("../models/productmodel");
+const { lista } = require("./delimarController");
 
 exports.agregarproducto = (req, res, next) => {
     res.render("homeagregarproductos");
@@ -6,14 +7,14 @@ exports.agregarproducto = (req, res, next) => {
 
 exports.homeagregarproductos = async(req, res, next) => {
    const { name, price, libra, description } = req.body;
-   const errores = [];
+   const messages = [];
 
    if (!name){
-       errores.push({error: "El nombre del proyecto no puede ser vacio."});
+       messages.push({error: "El nombre del proyecto no puede ser vacio."});
    }
 
    //Si hay algun error
-   if(errores.length){
+   if(messages.length){
     res.render("homeagregarproductos", {
         errores,
     });
@@ -26,12 +27,34 @@ exports.homeagregarproductos = async(req, res, next) => {
             libra,
             description
         });
+        messages.push({
+            error: "Producto almacenado satisfactoriamente",
+            type: "alert-sucess",
+        });
  
-        res.render("homeproductos", {layout: "autenticacion"});
+        res.render("homeproductos", {layout: "main"});
     } catch (error) {
         res.render("homeagregarproductos", {
             error,
         })
     }
    }
+}
+
+//Obtener los productos en inventario
+exports.productosInv = async(req, res , next) =>{
+    const messages = [];
+    try {
+        const productos  = await Producto.findAll();
+
+        res.render("lista", {productos});
+        
+    } catch (error) {
+        messages.push({error: "Error al obtener los productos", 
+        type: "alert-warning"
+        });
+
+        res.render("lista", messages);
+    }
+    
 }

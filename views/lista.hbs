@@ -4,8 +4,8 @@
 </div>
 
 {{!-- Mostrar los emensajes en caso de que existan --}}
-{{#if mensajes}}
-  {{#each mensajes}}
+{{#if messages}}
+  {{#each messages}}
     <div class="alert {{type}}" role="alert">
       {{error}}
     </div>
@@ -13,13 +13,17 @@
 {{/if}}
 
 {{!-- Mostrar los productos que hay en existencia --}}
-<div class="card">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+{{#if productos}}
+  {{#each productos}}
+    <div class="card">
+      <div class="card-header">
+      {{productos.name}}
+      </div>
+      <div class="card-body">
+        {{!--<h5 class="card-title"></h5>--}}
+        <p class="card-text">Esta es la descripcion del producto</p>
+        <a href="#" class="btn btn-primary">Ver producto</a>
+      </div>
+    </div>
+  {{/each}}
+{{/if}}
