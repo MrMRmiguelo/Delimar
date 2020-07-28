@@ -20,6 +20,22 @@ const Usuario = db.define("usuario",
         },
       },
     },
+    email: {
+      type: Sequelize.STRING(50),
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: "Ya existe un usuario registrado con esta dirección de correo",
+      },
+      validate: {
+        notEmpty: {
+          msg: "Debes ingresar un correo electrónico",
+        },
+        isEmail: {
+          msg: "Verifica que tu correo es un correo electrónico válido",
+        },
+      },
+    },
     user: {
       type: Sequelize.STRING(50),
       allowNull: false,
@@ -52,9 +68,15 @@ const Usuario = db.define("usuario",
         );
       },
     },
+    token: Sequelize.STRING,
+    expiration: Sequelize.DATE
   }
 );
 
+
+Usuario.prototype.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+}
 
 // Exportar el modulo
 module.exports = Usuario;
