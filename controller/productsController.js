@@ -25,13 +25,13 @@ exports.homeagregarproductos = async(req, res, next) => {
             name,
             price,
             libra,
-            description
+            description,
         });
         messages.push({
             error: "Producto almacenado satisfactoriamente",
             type: "alert-sucess",
         });
- 
+
         res.render("homeproductos", {layout: "main"});
     } catch (error) {
         res.render("homeagregarproductos", {
@@ -48,13 +48,13 @@ exports.productosInv = async(req, res , next) =>{
         const productos  = await Producto.findAll();
 
         res.render("lista", {productos});
-        
+
     } catch (error) {
-        messages.push({error: "Error al obtener los productos", 
+        messages.push({error: "Error al obtener los productos",
         type: "alert-warning"
         });
 
         res.render("lista", messages);
     }
-    
+
 }
