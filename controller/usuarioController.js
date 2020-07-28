@@ -5,19 +5,22 @@ exports.crearCuentaAdmin = (req, res, next) =>{
 }
 
 exports.crearUsuario = async(req, res, next) => {
-    const { fullname, user, password } = req.body;
+    const { fullname, email, user, password } = req.body;
 
     try {
         await Usuario.create({
             fullname,
+            email,
             user,
             password
         });
 
-        res.render("homeproductos", {layout: "autenticacion"});
+        res.redirect("homeproductos");
     } catch (error) {
-        res.render("crearUsuario", {
-            error,
-        })
+        res.render("registrarse", { layout: "auth", error: error.message });
     }
 }
+
+exports.homeproductos = (req, res, next) => {
+    res.render("homeproductos", { layout: "auth", messages });
+};

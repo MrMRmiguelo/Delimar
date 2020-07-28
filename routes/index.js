@@ -13,7 +13,9 @@ module.exports = function () {
 
     routes.get("/prueba", delimarController.prueba);
 
-    routes.get("/homeproductos", delimarController.homeproductos);
+    routes.get("/homeproductos", usuariosController.homeproductos);
+
+    routes.post("/homeproductos", usuariosController.homeproductos);
 
     routes.get("/crear_usuario", usuariosController.crearCuentaAdmin);
 
@@ -24,6 +26,8 @@ module.exports = function () {
     routes.post("/agregar_producto", productosController.homeagregarproductos);
     
     routes.get("/lista_producto", delimarController.lista);
+
+   
 
     return routes;
 }
