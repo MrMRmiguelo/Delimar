@@ -22,6 +22,9 @@ const Producto = db.define("producto", {
     },
     libra: {
         type: Sequelize.FLOAT
+    },
+    description: {
+        type: Sequelize.STRING
     }
     // url:{
     //     type: Sequelize.STRING

@@ -3,37 +3,27 @@
   <p class="lead">Listado de los productos premium registrados</p>
 </div>
 
-{{!-- Mostrar los mensajes en caso de existir --}}
-{{#if mensajes}}
-  {{#each mensajes}}
+{{!-- Mostrar los emensajes en caso de que existan --}}
+{{#if messages}}
+  {{#each messages}}
     <div class="alert {{type}}" role="alert">
       {{error}}
     </div>
   {{/each}}
 {{/if}}
 
-<div class="container">
-  <div class="d-flex flex-row-reverse">
-    <a href="/agregar_producto" class="btn btn-success btn-lg mb-2">Nuevo producto</a>
-  </div>
-  <div class="card-deck mb-3 text-center">
-    {{!-- Mostrar los proyectos (si existen) --}}
-    {{#if proyectos}}
-        {{#each proyectos}}
-            <div class="card mb-4 shadow-sm">
-              <div class="card-header">
-                <a class="font-weight-normal" href="/productmodel/{{dataValues.url}}">{{dataValues.nombre}}</a>
-              </div>
-              <div class="card-body">
-                  <h5 class="card-title">{{dataValues.descripcion}}</h5>
-                  <p class="card-text">{{dataValues.fecha}}</p>
-                  <a href="/actualizar_proyecto/{{dataValues.url}}" class="btn btn-primary btn-lg">Actualizar</a>
-                  <button name="eliminar-proyecto" data-proyecto-url={{dataValues.url}} type="button" class="btn btn-danger btn-lg">Eliminar</button>
-              </div>
-            </div>
-        {{/each}}
-    {{else}}
-      <h4>Aún no tienes ningún proyecto. ¡Anímate a crear uno!</h4>
-    {{/if}}
-  </div>
-</div>
+{{!-- Mostrar los productos que hay en existencia --}}
+{{#if productos}}
+  {{#each productos}}
+    <div class="card">
+      <div class="card-header">
+      {{productos.name}}
+      </div>
+      <div class="card-body">
+        {{!--<h5 class="card-title"></h5>--}}
+        <p class="card-text">Esta es la descripcion del producto</p>
+        <a href="#" class="btn btn-primary">Ver producto</a>
+      </div>
+    </div>
+  {{/each}}
+{{/if}}
