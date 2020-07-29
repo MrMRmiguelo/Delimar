@@ -2,6 +2,11 @@
 const express = require("express");
 //Importar Handlebars
 const exphbs = require("express-handlebars");
+// Importar connect-flash para disponer de los errores en todo el sitio
+const flash = require("connect-flash");
+
+const helpers = require("./helpers");
+
 
 
 //Importar todas las rutas de routes
@@ -50,6 +55,8 @@ app.use(session({
      })
    );
 
+
+app.use(flash());
 
 //Instancia de passport
 app.use(passport.initialize());

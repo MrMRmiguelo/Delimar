@@ -2,6 +2,28 @@
 const express = require("express"); 
 const routes = express.Router();
 
+// Rutas para autenticación
+   routes.get("/crear_usuario", usuarioController.crearUsuario);
+
+  routes.post(
+    "/registrate",
+    // Sanitizar el contenido del formulario
+    body("fullname").notEmpty().trim().escape(),
+    usuariosController.crearUsuario
+  );
+
+  routes.get("/iniciar_sesion", usuariosController.formularioIniciarSesion);
+
+  routes.post(
+    "/iniciar_sesion",
+    // Sanitizar el contenido del formulario
+    body("email").notEmpty().trim(),
+    body("password").notEmpty().trim(),
+    delimarController.homeproductos
+  );
+
+  routes.get("/cerrar_sesion", authController.cerrarSesion);
+
 
 // Importar los controladores
 const delimarController = require("../controller/delimarController");
