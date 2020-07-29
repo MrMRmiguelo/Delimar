@@ -1,7 +1,7 @@
 const Usuario = require("../models/usuario");
 
 exports.crearCuentaAdmin = (req, res, next) =>{
-    res.render("crearUsuario", {layout: "autenticacion"});
+    res.render("crearUsuario", {layout: "auth"});
 }
 
 exports.crearUsuario = async(req, res, next) => {
@@ -17,10 +17,12 @@ exports.crearUsuario = async(req, res, next) => {
 
         res.redirect("homeproductos");
     } catch (error) {
-        res.render("registrarse", { layout: "auth", error: error.message });
+        res.render("crear_usuario", { layout: "auth", error: error.message });
     }
 }
 
 exports.homeproductos = (req, res, next) => {
-    res.render("homeproductos", { layout: "auth", messages });
+
+    const messages = res.locals.messages;    
+    res.render("lista", { layout: "auth", messages });
 };
