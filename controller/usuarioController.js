@@ -5,14 +5,15 @@ exports.crearCuentaAdmin = (req, res, next) =>{
 }
 
 exports.crearUsuario = async(req, res, next) => {
-    const { fullname, email, user, password } = req.body;
+    const { fullname, email, user, password, level} = req.body;
 
     try {
         await Usuario.create({
             fullname,
             email,
             user,
-            password
+            password,
+            leve,
         });
 
         res.redirect("homeproductos");
