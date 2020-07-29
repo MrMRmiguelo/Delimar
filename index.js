@@ -2,9 +2,15 @@
 const express = require("express");
 //Importar Handlebars
 const exphbs = require("express-handlebars");
+
+
 //Importar todas las rutas de routes
 const routes = require("./routes");
 const bodyParser = require("body-parser");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+//importar passport para inicio de sesion
+const passport = require("./config/passport");
 
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
@@ -30,6 +36,35 @@ app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
 app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+// Habilitar el uso de cookieParser
+app.use(cookieParser());
+
+
+// Habilitar las sesiones de usuario
+app.use(session({
+       secret: process.env.SESSIONSECRET,
+       resave: false,
+       saveUninitialized: false,
+     })
+   );
+
+
+//Instancia de passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Pasar algunos valores mediante middleware
+app.use((req, res, next) => {
+     // Pasar el usuario a las variables locales de la petición
+     res.locals.usuario = { ...req.user } || null;
+     res.locals.messages = req.flash();
+     // Pasar valores de variables por el helper
+     res.locals.vardump = helpers.vardump;
+     // Continuar con el camino del middleware
+     next();
+   });
 
 //Rutas para el servidor
 app.use("/", routes());
