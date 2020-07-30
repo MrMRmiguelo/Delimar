@@ -13,20 +13,25 @@ const productosController = require("../controller/productsController");
 
 module.exports = function () {
 
-  routes.post(
-    "/agregar_producto",
-    delimarController.usuarioAutenticado,
-    // Sanitizar el contenido del formulario
-    //body("name").notEmpty().trim().escape(),
-    productosController.homeagregarproductos
-  );
-
     routes.get("/", delimarController.home);
 
     routes.get("/prueba", delimarController.prueba);
 
-
     routes.get("/crear_usuario", usuariosController.crearUsuario);
+
+    routes.get("/iniciar_sesion", usuariosController.homeproductos);
+
+    routes.get("/agregar_producto", productosController.agregarproducto);
+
+    routes.post("/agregar_producto", productosController.homeagregarproductos);
+
+    // routes.post(
+    //   "/agregar_producto",
+    //   delimarController.usuarioAutenticado,
+    //   // Sanitizar el contenido del formulario
+    //   //body("name").notEmpty().trim().escape(),
+    //   productosController.homeagregarproductos
+    // );
 
     routes.post(
       "/crear_usuario",
@@ -45,12 +50,7 @@ module.exports = function () {
     //   delimarController.homeproductos
     // );
 
-    routes.get("/agregar_producto", productosController.agregarproducto);
-
-
-    routes.get("/lista_producto", delimarController.lista);
-
-
+    routes.get("/lista_producto", productosController.productosInv);
 
     return routes;
 }
