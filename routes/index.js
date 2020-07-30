@@ -4,7 +4,7 @@ const routes = express.Router();
 
 // Importar expresss-validator
 // https://express-validator.github.io/docs/sanitization.html
-const { body } = require("express-validator");
+//const { body } = require("express-validator");
 
 // Importar los controladores
 const delimarController = require("../controller/delimarController");
@@ -17,7 +17,7 @@ module.exports = function () {
     "/agregar_producto",
     delimarController.usuarioAutenticado,
     // Sanitizar el contenido del formulario
-    body("name").notEmpty().trim().escape(),
+    //body("name").notEmpty().trim().escape(),
     productosController.homeagregarproductos
   );
 
@@ -31,7 +31,7 @@ module.exports = function () {
     routes.post(
       "/crear_usuario",
       // Sanitizar el contenido del formulario
-      body("fullname").notEmpty().trim().escape(),
+     // body("fullname").notEmpty().trim().escape(),
       usuariosController.crearUsuario
     );
 
