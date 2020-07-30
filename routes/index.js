@@ -50,7 +50,7 @@ module.exports = function () {
     //   delimarController.homeproductos
     // );
 
-    routes.get("/lista_producto", delimarController.lista);
+    routes.get("/lista_producto", productosController.productosInv);
 
     return routes;
 }

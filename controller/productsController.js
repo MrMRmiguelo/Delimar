@@ -43,27 +43,26 @@ exports.homeagregarproductos = async(req, res, next) => {
         });
 
     } catch (errors) {
-        res.render("homeagregarproductos", {
-            error,
-        })
+      errors.push({
+        error: "Ha ocurrido un error en el servidor de base de datos, comunicate con personal autorizado de Delimar.",
+        type: "alert-warning",
+      });
     }
    }
 }
 
 //Obtener los productos en inventario
 exports.productosInv = async(req, res , next) =>{
-    const messages = [];
+    const errors = [];
     try {
-      Producto.findAll();
-
+      const productos = await Producto.findAll();
       res.render("lista", {productos});
 
     } catch (error) {
-        messages.push({error: "Error al obtener los productos",
+        errors.push({error: "Error al obtener los productos",
         type: "alert-warning"
         });
 
-        res.render("lista", messages);
+        res.render("lista", errors);
     }
-
 }
