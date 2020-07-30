@@ -26,7 +26,7 @@ require("./models/usuario");
 
 // Conexion mediante promesas
 db.sync()
-     .then(() => console.log("Connected to the server database"))
+     .then(() => console.log("*************************************Connected to the server database*************************************"))
      .catch((error) => console.log(error));
 
 // App de express
@@ -78,5 +78,5 @@ app.use("/", routes());
 
 // Inicializar
 app.listen(7000, () => {
-     console.log("Server running on port 7000");
+     console.log("*************************************Server running on port 7000*************************************");
 });

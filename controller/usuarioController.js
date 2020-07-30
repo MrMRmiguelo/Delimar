@@ -18,12 +18,12 @@ exports.crearUsuario = async(req, res, next) => {
 
         res.redirect("homeproductos");
     } catch (error) {
-        res.render("crear_usuario", { layout: "auth", error: error.message });
+        res.render("crearUsuario", { layout: "auth", error: error.message });
     }
 }
 
 exports.homeproductos = (req, res, next) => {
 
-    const messages = res.locals.messages;    
+    const messages = res.locals.messages;
     res.render("lista", { layout: "auth", messages });
 };
