@@ -21,6 +21,8 @@ module.exports = function () {
 
     routes.get("/iniciar_sesion", usuariosController.homeproductos);
 
+    routes.get("/agregar_producto", productosController.agregarproducto);
+
     routes.post("/agregar_producto", productosController.homeagregarproductos);
 
     // routes.post(

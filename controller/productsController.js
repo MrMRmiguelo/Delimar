@@ -22,7 +22,7 @@ exports.homeagregarproductos = async(req, res, next) => {
    //Si hay algun error
    if(messages.length){
     res.render("homeagregarproductos", {
-        errores,
+        messages,
     });
    } else{
        //insertar los datos en la base de datos de productos
@@ -33,13 +33,13 @@ exports.homeagregarproductos = async(req, res, next) => {
             libra,
             description,
         });
-        messages.push({
-            error: "Producto almacenado satisfactoriamente",
-            type: "alert-sucess",
-        });
+        // messages.push({
+        //     error: "Producto almacenado satisfactoriamente",
+        //     type: "alert-sucess",
+        // });
 
         res.render("homeproductos", {layout: "main"});
-    } catch (error) {
+    } catch (messages) {
         res.render("homeagregarproductos", {
             error,
         })
@@ -51,9 +51,9 @@ exports.homeagregarproductos = async(req, res, next) => {
 exports.productosInv = async(req, res , next) =>{
     const messages = [];
     try {
-        const productos  = await Producto.findAll();
+      Producto.findAll();
 
-        res.render("lista", {productos});
+      res.render("lista", {productos});
 
     } catch (error) {
         messages.push({error: "Error al obtener los productos",
