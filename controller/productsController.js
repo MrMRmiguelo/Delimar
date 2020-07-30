@@ -10,7 +10,13 @@ exports.homeagregarproductos = async(req, res, next) => {
    const messages = [];
 
    if (!name){
-       messages.push({error: "El nombre del proyecto no puede ser vacio."});
+     messages.push({error: "El nombre del producto no puede ser vacio."});
+   }else if (!price) {
+     messages.push({error: "El precio no puede ser vacio o 0."});
+   }else if (!libra) {
+     messages.push({error: "Debe ingresar la cantidad de libras."});
+   }else if (!description) {
+     messages.push({error: "El producto debe tener una description"});
    }
 
    //Si hay algun error
