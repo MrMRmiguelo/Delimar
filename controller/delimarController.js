@@ -7,7 +7,7 @@ const Sequelize = require("sequelize");
 exports.autenticarUsuario = passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/homeproductos",
-    badRequestMessage: "Debes ingresar tu usuario y tu contraseña",
+    badRequestMessage: "Debes ingresar tu usuario y/o tu contraseña",
     failureFlash: true,
   });
 
@@ -38,7 +38,7 @@ exports.usuarioAutenticado = (req, res, next) => {
     if (req.isAuthenticated()) {
       return next();
     }
-  
+
     // Si el usuario no está autenticado, iniciar sesión
     return res.redirect("/homeproductos");
   };
