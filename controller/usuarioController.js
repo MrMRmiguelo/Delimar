@@ -5,15 +5,14 @@ exports.crearCuentaAdmin = (req, res, next) =>{
 }
 
 exports.crearUsuario = async(req, res, next) => {
-    const { fullname, email, user, password, level} = req.body;
+    const { fullname, email, user, password} = req.body;
 
     try {
         await Usuario.create({
             fullname,
             email,
             user,
-            password,
-            leve,
+            password            
         });
 
         res.redirect("homeproductos");
@@ -25,5 +24,5 @@ exports.crearUsuario = async(req, res, next) => {
 exports.homeproductos = (req, res, next) => {
 
     const messages = res.locals.messages;
-    res.render("lista", { layout: "auth", messages });
+    res.render("homeproductos", { layout: "auth", messages });
 };

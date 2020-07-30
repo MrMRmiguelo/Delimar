@@ -58,11 +58,7 @@ const Usuario = db.define("usuario",
         },
       },
     },
-    level: {
-      type: Sequelize.STRING(10),
-      allowNull: false,
-      default: "user",
-    },
+    
   },
   {
     hooks: {
