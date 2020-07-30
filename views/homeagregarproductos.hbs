@@ -27,10 +27,12 @@
 </header>
 
 <!-- Mostrar errores en caso de que ocurran -->
-{{#if messages}}
-  <div class="alert alert-success" role="alert">
-    This is a success alert—check it out!
-  </div>
+{{#if errors}}
+  {{#each errors}}
+    <div class="alert {{type}}" role="alert">
+    {{error}}
+    </div>
+  {{/each}}
 {{/if}}
 
 <form class="form-signin" method="POST" action="">

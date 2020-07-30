@@ -7,22 +7,22 @@ exports.agregarproducto = (req, res, next) => {
 
 exports.homeagregarproductos = async(req, res, next) => {
    const { name, price, libra, description } = req.body;
-   const messages = [];
+   const errors = [];
 
    if (!name){
-     messages.push({error: "El nombre del producto no puede ser vacio."});
+     errors.push({error: "El nombre del producto no puede ser vacio.", type: "alert-danger"});
    }else if (!price) {
-     messages.push({error: "El precio no puede ser vacio o 0."});
+     errors.push({error: "El precio no puede ser vacio o 0.", type: "alert-danger"});
    }else if (!libra) {
-     messages.push({error: "Debe ingresar la cantidad de libras."});
+     errors.push({error: "Debe ingresar la cantidad de libras.", type: "alert-danger"});
    }else if (!description) {
-     messages.push({error: "El producto debe tener una description"});
+     errors.push({error: "El producto debe tener una description", type: "alert-danger"});
    }
 
    //Si hay algun error
-   if(messages.length){
+   if(errors.length){
     res.render("homeagregarproductos", {
-        messages,
+        errors,
     });
    } else{
        //insertar los datos en la base de datos de productos
@@ -33,13 +33,16 @@ exports.homeagregarproductos = async(req, res, next) => {
             libra,
             description,
         });
-        // messages.push({
-        //     error: "Producto almacenado satisfactoriamente",
-        //     type: "alert-sucess",
-        // });
+        errors.push({
+            error: "Producto almacenado satisfactoriamente",
+            type: "alert-sucess",
+        });
 
-        res.render("homeproductos", {layout: "main"});
-    } catch (messages) {
+        res.render("homeagregarproductos", {
+          errors,
+        });
+
+    } catch (errors) {
         res.render("homeagregarproductos", {
             error,
         })
