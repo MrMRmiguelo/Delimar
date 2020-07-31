@@ -4,8 +4,9 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 // Importar connect-flash para disponer de los errores en todo el sitio
 const flash = require("connect-flash");
-
 const helpers = require("./helpers");
+//Importar el modulo Multer
+const multer = require("multer");
 
 
 
@@ -72,6 +73,11 @@ app.use((req, res, next) => {
      // Continuar con el camino del middleware
      next();
    });
+
+//Ejecutar el middleware de Multer
+app.use(multer({
+  dest: 'public/imagenes'
+}).single('picture'));
 
 //Rutas para el servidor
 app.use("/", routes());
