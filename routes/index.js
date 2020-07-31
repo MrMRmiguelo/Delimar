@@ -19,7 +19,9 @@ module.exports = function () {
 
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
-    routes.get("/iniciar_sesion", usuariosController.homeproductos);
+    routes.get("/iniciar_sesion", usuariosController.IniciarSesion);
+    
+    routes.post("/iniciar_sesion", usuariosController.IniciarSesion);
 
     routes.get("/agregar_producto", productosController.agregarproducto);
 
@@ -49,6 +51,11 @@ module.exports = function () {
     // );
 
     routes.get("/lista_producto", productosController.productosInv);
+
+  
+  routes.get("/reestablecer_contrasena", usuariosController.ReestablecerContrasena );
+
+  routes.post("/reestablecer_contrasena", delimarController.enviarToken);
 
     return routes;
 }

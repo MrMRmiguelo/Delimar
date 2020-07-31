@@ -15,14 +15,19 @@ exports.crearUsuario = async(req, res, next) => {
             password            
         });
 
-        res.redirect("homeproductos");
+        res.redirect("iniciar_sesion");
     } catch (error) {
         res.render("crearUsuario", { layout: "auth", error: error.message });
     }
 }
 
-exports.homeproductos = (req, res, next) => {
+exports.IniciarSesion = (req, res, next) => {
 
     const messages = res.locals.messages;
-    res.render("homeproductos", { layout: "auth", messages });
+
+    res.render("iniciar_sesion", { layout: "auth", messages });
 };
+
+exports.ReestablecerContrasena = (req, res, next) => {
+    res.render("reestablecer_contrasena", { layout: "auth" });
+  };

@@ -8,11 +8,6 @@ const helpers = require("./helpers");
 //Importar el modulo Multer
 const multer = require("multer");
 
-const almacenar = multer.diskStorage({
-  filename: (req, file, cb) =>{
-    cb(null, file.originalname);
-  }
-});
 
 
 
@@ -50,8 +45,17 @@ app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+const almacenar = multer.diskStorage({
+  filename: (req, file, cb) =>{
+    cb(null, file.originalname);
+  }
+});
+
+
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
+
+
 
 
 // Habilitar las sesiones de usuario
