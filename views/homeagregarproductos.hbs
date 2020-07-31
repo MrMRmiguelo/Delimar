@@ -38,7 +38,7 @@
   {{/each}}
 {{/if}}
 
-<form class="form-signin" method="POST" action="">
+<form class="form-signin" method="POST" action="" enctype="multipart/form-data">
     <div class="mb-4 text-center">
         <h1>Añadir nuevo producto Delimar</h1>
         <p>Bienvenido al servicio de administrador de productos Delimar</p>
@@ -61,6 +61,8 @@
         <label for="description">Descripcion</label>
         <input for="text" name="description" id="description" placeholder="Descripcion">
     </div>
+    <h5>Seleccione una imagen para el producto</h5>
+    <input type="file" name="picture" value="">
     <div class="mb3">
         <button class="btn btn-sm btn-primary btn-block" type="submit" style="background-color: #00B9C9;">Guardar</button>
     </div>
