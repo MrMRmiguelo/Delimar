@@ -67,6 +67,16 @@ exports.lista = (req, res, next) => {
   
     // URL de reestablecer contraseña
     const resetUrl = `http://${req.headers.host}/reestablecer_contrasena/${usuario.token}`;
+
+    await enviarCorreo.enviarCorreo({
+      usuario,
+      subject: "Restablece tu contraseña de tu cuenta Delimar",
+      resetUrl,
+      vista: "email_restablecer",
+      text:
+        "Has solicitado restablecer tu contraseña de Taskily! Autoriza el contenido HTML.",
+    });
+  
   
 
     req.flash(
