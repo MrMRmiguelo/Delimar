@@ -7,7 +7,7 @@ passport.use(
     new LocalStrategy(
     // Por defecto passport en LocalStrategy requiere de un usuario y una contraseña
     {
-      usernameField: "user",
+      usernameField: "email",
       passwordField: "password",
     },
     // Verificar si los datos enviados por el usuario son correctos
@@ -15,13 +15,13 @@ passport.use(
       try {
         // Realizar la búsqueda del usuario
         const usuario = await Usuario.findOne({
-          where: { user },
+          where: { email },
         });
 
         // Si el usuario existe, verificar si su contraseña es correcta
         if (!usuario.comparePassword(password)) {
           return done(null, false, {
-            message: "Nombre de usuario o contraseña incorrecta",
+            message: "Correo electronico o contraseña incorrecta",
           });
         }
 
@@ -30,7 +30,7 @@ passport.use(
       } catch (error) {
         // El usuario no existe
         return done(null, false, {
-          message: "El usuario no ha sido registrado",
+          message: "El correo electronico que ha ingresado no esta registrado",
         });
       }
     }

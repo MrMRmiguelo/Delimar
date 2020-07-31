@@ -58,6 +58,8 @@ const Usuario = db.define("usuario",
         },
       },
     },
+    token: Sequelize.STRING,
+    expiration: Sequelize.DATE
     
   },
   {
@@ -69,8 +71,7 @@ const Usuario = db.define("usuario",
         );
       },
     },
-    token: Sequelize.STRING,
-    expiration: Sequelize.DATE
+    
   }
 );
 
