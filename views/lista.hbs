@@ -40,15 +40,19 @@
   {{/each}}
 {{/if}}
 
-{{!-- Mostrar los productos que hay en existencia --}}
-{{#if productos}}
-  {{#each productos}}
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">{{dataValues.name}}</h5>
-          <p class="card-text">{{dataValues.description}}</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-  {{/each}}
-{{/if}}
+<div class="container">
+  <div class="row">
+      {{!-- Mostrar los productos que hay en existencia --}}
+      {{#if productos}}
+        {{#each productos}}
+            <div class="card mb-3 shadow-sm" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{dataValues.name}}</h5>
+                <p class="card-text">{{dataValues.description}}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+              </div>
+            </div>
+        {{/each}}
+      {{/if}}
+  </div>
+</div>
