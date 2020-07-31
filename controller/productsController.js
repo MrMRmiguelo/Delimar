@@ -1,5 +1,7 @@
 const Producto = require("../models/productmodel");
 const { lista } = require("./delimarController");
+const multer = require("multer");
+const shortid = require("shortid");
 
 exports.agregarproducto = (req, res, next) => {
     res.render("homeagregarproductos");
@@ -66,3 +68,26 @@ exports.productosInv = async(req, res , next) =>{
         res.render("lista", errors);
     }
 }
+
+//Insertar imagenes de los productos en el servidor
+// exports.subirImagen("/picture", async(req, res, next) => {
+//   const multerConfig =  {
+//     storage: (fileStorage = multer.diskStorage({
+//       destination: (req, file, cb) =>{
+//         cb(null, __dirname + "../public/imagenes");
+//       },
+//       filename: (req, file, cb) => {
+//         const extension = file.mimetype.split("/")[1];
+//         cb(null, `${shortid.generate()}.${extension}`);
+//       },
+//     })),
+//     fileFilter(req, file, cb){
+//       if{
+//         file.mimetype == "image/jpg" || file.mimetype == "image/png" || file.mimetype == "image/jpeg"}
+//         {
+//           cb(null, true);
+//         }else {
+//           cb(new errors("Formato de imagen no valido"));
+//         }
+//     },
+// });

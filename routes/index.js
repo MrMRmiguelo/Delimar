@@ -40,8 +40,6 @@ module.exports = function () {
       usuariosController.crearUsuario
     );
 
-    routes.get("/homeproductos", usuariosController.homeproductos);
-
     // routes.post(
     //   "/homeproductos",
     //   // Sanitizar el contenido del formulario
