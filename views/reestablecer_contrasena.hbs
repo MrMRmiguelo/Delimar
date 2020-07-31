@@ -26,33 +26,20 @@
     </nav>
 </header>
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="padding: 100px 0;">
-  <h1 class="display-4">Productos</h1>
-  <p class="lead">Listado de los productos premium registrados</p>
-</div>
-
-{{!-- Mostrar los emensajes en caso de que existan --}}
-{{#if errors}}
-  {{#each errors}}
-    <div class="alert {{type}}" role="alert">
-    {{error}}
+<form class="form-signin" method="POST" action="">
+   {{>messages}}
+    <div class="mb-4 text-center" style="padding: 100px 0;">
+        <h1>Reestablezca su contraseña </h1>
+        <p>Ingrese su correo electronico</p>
     </div>
-  {{/each}}
-{{/if}}
-
-<div class="container">
-  <div class="row">
-      {{!-- Mostrar los productos que hay en existencia --}}
-      {{#if productos}}
-        {{#each productos}}
-            <div class="card mb-3 shadow-sm" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">{{dataValues.name}}</h5>
-                <p class="card-text">{{dataValues.description}}</p>
-                <a href="#" class="btn btn-primary">Comprar</a>
-              </div>
-            </div>
-        {{/each}}
-      {{/if}}
-  </div>
-</div>
+    <div class="form-label-group">
+        <label for="email">Correo Electronico</label>
+        <input type="email" name="email" id="email" placeholder="delimar@gmail.sv" required>
+    </div>
+    
+     
+    <div class="mb3">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #00B9C9;">Reestablecer</button>
+    </div>
+    
+</form>
