@@ -8,6 +8,12 @@ const helpers = require("./helpers");
 //Importar el modulo Multer
 const multer = require("multer");
 
+const almacenar = multer.diskStorage({
+  filename: (req, file, cb) =>{
+    cb(null, file.originalname);
+  }
+});
+
 
 
 //Importar todas las rutas de routes
@@ -76,6 +82,7 @@ app.use((req, res, next) => {
 
 //Ejecutar el middleware de Multer
 app.use(multer({
+  almacenar,
   dest: 'public/imagenes'
 }).single('picture'));
 
