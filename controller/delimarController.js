@@ -41,6 +41,16 @@ exports.prueba = (req, res, next) => {
 exports.lista = (req, res, next) => {
      res.render("lista");
 };
+exports.success = (req, res, next) => {
+  res.render("success");
+};
+exports.cancel = (req, res, next) => {
+  res.render("cancel");
+};
+
+exports.compra = (req, res, next) => {
+  res.render("compra");
+};
 
 
 // Cerrar la sesión del usuario actual

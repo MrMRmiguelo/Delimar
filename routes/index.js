@@ -9,6 +9,7 @@ const { body } = require("express-validator");
 const delimarController = require("../controller/delimarController");
 const usuariosController =  require("../controller/usuarioController");
 const productosController = require("../controller/productsController");
+const paypalController = require("../controller/paypalController");
 
 module.exports = function () {
 
@@ -61,6 +62,17 @@ module.exports = function () {
 
   routes.get("/resetear_contrasena/:token", delimarController.validarToken);
   routes.post("/resetear_contrasena/:token",body("password").notEmpty().trim(), delimarController.actualizarPassword);
+  routes.get("/cerrar_sesion", delimarController.cerrarSesion);
+  routes.get("/success", delimarController.success);
+  routes.post("/success", delimarController.success);
+  routes.get("/cancel", delimarController.cancel);
+  routes.post("/cancel", delimarController.cancel);
+  routes.get("/compra", delimarController.compra);
+  routes.post("/compra", delimarController.compra);
+
+  routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  routes.post("/paypal_token", paypalController.generarTokenPaypal);
+
 
     return routes;
 }
