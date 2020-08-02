@@ -19,6 +19,8 @@ exports.homeagregarproductos = async(req, res, next) => {
      errors.push({error: "Debe ingresar la cantidad de libras.", type: "alert-danger"});
    }else if (!description) {
      errors.push({error: "El producto debe tener una description", type: "alert-danger"});
+   }else if (!image_path){
+     errors.push({error: "Debe subir una imagen para el producto", type: "alert-danger"});
    }
 
    //Si hay algun error
@@ -34,6 +36,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
+            image_path,
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",
@@ -68,26 +71,3 @@ exports.productosInv = async(req, res , next) =>{
         res.render("lista", errors);
     }
 }
-
-//Insertar imagenes de los productos en el servidor
-// exports.subirImagen("/picture", async(req, res, next) => {
-//   const multerConfig =  {
-//     storage: (fileStorage = multer.diskStorage({
-//       destination: (req, file, cb) =>{
-//         cb(null, __dirname + "../public/imagenes");
-//       },
-//       filename: (req, file, cb) => {
-//         const extension = file.mimetype.split("/")[1];
-//         cb(null, `${shortid.generate()}.${extension}`);
-//       },
-//     })),
-//     fileFilter(req, file, cb){
-//       if{
-//         file.mimetype == "image/jpg" || file.mimetype == "image/png" || file.mimetype == "image/jpeg"}
-//         {
-//           cb(null, true);
-//         }else {
-//           cb(new errors("Formato de imagen no valido"));
-//         }
-//     },
-// });
