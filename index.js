@@ -7,8 +7,9 @@ const flash = require("connect-flash");
 const helpers = require("./helpers");
 //Importar el modulo Multer
 const multer = require("multer");
-
-
+//Importar shortid para el nombre de las imagenes
+const shortid = require("shortid");
+const path = require("path");
 
 
 //Importar todas las rutas de routes
@@ -44,19 +45,19 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-const almacenar = multer.diskStorage({
+//Guardar las imagenes con un nombre aleatorio
+const storage = multer.diskStorage({
+  //Ruta en la cual se guardaran las imagenes
+  destination: "public/imagenes",
+  //configuracion del callback con shortid para el nombre
   filename: (req, file, cb) =>{
-    cb(null, file.originalname);
+    cb(null, shortid.generate() + path.extname(file.originalname));
   }
 });
 
 
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
-
-
-
 
 // Habilitar las sesiones de usuario
 app.use(session({
@@ -86,8 +87,7 @@ app.use((req, res, next) => {
 
 //Ejecutar el middleware de Multer
 app.use(multer({
-  almacenar,
-  dest: 'public/imagenes'
+  storage,
 }).single('picture'));
 
 //Rutas para el servidor
