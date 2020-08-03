@@ -251,6 +251,17 @@ color: #ecf5ff;
     width: 65%;
 }
 
+#footer .footer-top .footer-newsletter input[type="submit"]{
+    background: #007bff;
+    border: 0;
+    width: 35%;
+    padding: 6px 0;
+    text-align: center;
+    color: #fff;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
 @media (max-width: 575.98px) {
     h1{ font-size: 48px; line-height: normal;}
  }
