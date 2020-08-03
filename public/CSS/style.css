@@ -233,6 +233,18 @@ color: #ecf5ff;
     color: #74b5fc;
 }
 
+#footer .footer-top .footer-contact{
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-contact p{
+ line-height: 26px;
+}
+
+#footer .footer-top .footer-newsletter{
+    margin-bottom: 30px;
+}
+
 @media (max-width: 575.98px) {
     h1{ font-size: 48px; line-height: normal;}
  }
