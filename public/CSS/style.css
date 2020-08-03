@@ -281,6 +281,10 @@ color: #ecf5ff;
     color: #bfddfe;
 }
 
+#footer .credits a:hover{
+    color: #f1f7ff;
+}
+
 
 
 @media (max-width: 575.98px) {
