@@ -245,6 +245,12 @@ color: #ecf5ff;
     margin-bottom: 30px;
 }
 
+#footer .footer-top .footer-newsletter input[type="email"]{
+    border: 0;
+    padding: 6px 8px;
+    width: 65%;
+}
+
 @media (max-width: 575.98px) {
     h1{ font-size: 48px; line-height: normal;}
  }
