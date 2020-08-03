@@ -262,6 +262,27 @@ color: #ecf5ff;
     cursor: pointer;
 }
 
+#footer .footer-top .footer-newsletter input[type="submit"];hover{
+    background: #0062cc;
+}
+
+#footer .copyright{
+    text-align: center;
+    padding-top: 30px;
+}
+
+#footer .credits{
+    text-align: center;
+    font-size: 13px;
+    color: #f1f7ff;
+}
+
+#footer .credits a{
+    color: #bfddfe;
+}
+
+
+
 @media (max-width: 575.98px) {
     h1{ font-size: 48px; line-height: normal;}
  }
