@@ -26,9 +26,9 @@ const Producto = db.define("producto", {
     description: {
       type: Sequelize.STRING
     },
-    image_path: {
-      type: Sequelize.STRING,
-    }
+    // image_path: {
+    //   type: Sequelize.STRING,
+    // }
     // url:{
     //     type: Sequelize.STRING
     // }
