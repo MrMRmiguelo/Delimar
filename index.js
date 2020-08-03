@@ -15,6 +15,11 @@ const cookieParser = require("cookie-parser");
 //importar passport para inicio de sesion
 const passport = require("./config/passport");
 
+//importar librearias para Paypal
+
+const ejs = require('ejs');
+const paypal = require('paypal-rest-sdk');
+
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
 

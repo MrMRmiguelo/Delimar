@@ -74,5 +74,16 @@ module.exports = function () {
   routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
 
+  routes.get('/comprar', (req, res, send) => {
+    res.send ({success: true});
+  })
+  routes.get('/exito', (req, res, send) => {
+    res.send ({success: true});
+  })
+  routes.get('/cancelar', (req, res, send) => {
+    res.send ({success: true});
+  })
+
+
     return routes;
 }
