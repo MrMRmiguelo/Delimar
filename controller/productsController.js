@@ -25,7 +25,7 @@ exports.agregarproducto = (req, res, next) => {
 };
 
 exports.homeagregarproductos = async(req, res, next) => {
-   const { name, price, libra, description, image_path } = req.body;
+   const { name, price, libra, description } = req.body;
    const errors = [];
 
    if (!name){
@@ -36,8 +36,6 @@ exports.homeagregarproductos = async(req, res, next) => {
      errors.push({error: "Debe ingresar la cantidad de libras.", type: "alert-danger"});
    }else if (!description) {
      errors.push({error: "El producto debe tener una description", type: "alert-danger"});
-   }else if (!image_path){
-     errors.push({error: "Debe subir una imagen para el producto", type: "alert-danger"});
    }
 
    //Si hay algun error
@@ -53,7 +51,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
-            // image_path,
+            // image_path: guardar.storage,
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",
