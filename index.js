@@ -4,8 +4,20 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 // Importar connect-flash para disponer de los errores en todo el sitio
 const flash = require("connect-flash");
-const helpers = require("./helpers");
 const multer = require("multer");
+const shortid = require("shortid");
+
+const helpers = require("./helpers");
+
+//Almacenar las imaganes con multer
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'public/imagenes/upload_images');
+  },
+  filename: function(req, file, cb){
+    cb(null, shortid.generate() + file.originalname);
+  }
+});
 
 //Importar todas las rutas de routes
 const routes = require("./routes");
@@ -14,11 +26,6 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 //importar passport para inicio de sesion
 const passport = require("./config/passport");
-
-//importar librearias para Paypal
-
-const ejs = require('ejs');
-const paypal = require('paypal-rest-sdk');
 
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
@@ -45,8 +52,10 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
+
 
 // Habilitar las sesiones de usuario
 app.use(session({
@@ -73,6 +82,26 @@ app.use((req, res, next) => {
      // Continuar con el camino del middleware
      next();
    });
+
+//Filtros para las imagenes
+const fileFilter = (req, file, cb) => {
+  //Aceptar la imagen si cumple con los parametros
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg'){
+    cb(null, true);
+  }else {
+    cb(null, false);
+  }
+};
+
+app.use(multer({
+  storage: storage,
+  limits:{
+    //limite de 10mb como maximo para cada imagen
+    fileSize: 1024 * 1024 * 10
+  },
+  fileFilter: fileFilter,
+}).single('image'));
+
 
 //Rutas para el servidor
 app.use("/", routes());
