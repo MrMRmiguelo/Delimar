@@ -21,17 +21,13 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="contacto">Contactanos</a>
           </li>
-          {{#if login}}
+          
           <li class="nav-item">
             <a class="nav-link" href="/iniciar_sesion" id="inicio">Iniciar Sesion</a>
           </li>
-          {{/if}}
-          {{#else}}
-           <li class="nav-item">
-            <a class="nav-link" href="/cerrar_sesion" id="inicio">Cerrar Sesion</a>
-          </li>
           
-          {{/else}}
+           
+         
          
         </ul>
       </div>
@@ -45,7 +41,7 @@
         <h1>Bienvenidos</h1>
         <p>El referente en venta de productos de mar de la mas alta calidad, esperando siempre superar las expectativas
           de nuestros clientes.</p>
-        <a href="#" class="btn btn-light topmargin-sm">Explorar <ion-icon name="play-circle-outline"></ion-icon></a>
+        <a href="/compra" class="btn btn-light topmargin-sm">Explorar <ion-icon name="play-circle-outline"></ion-icon></a>
       </div>
   </section>
 
@@ -104,7 +100,7 @@
         <div class="columns d-inline-flex">
           <div class=" col-md-6 bg-light-grey m-1 p-0">
             <div class="pricing-container mt-0">
-              <h4 style="background-color: #F7BD3B" class="p-2">Camarones</h4>
+              <h4 href="/compra" style="background-color: #F7BD3B" class="p-2">Camarones</h4>
               <div class="plans">
                 <h2>$14.9 <span>la libra</span></h2>
               </div>
@@ -112,7 +108,7 @@
           </div>
           <div class="col-md-6 bg-light-grey m-1 p-0">
             <div class="pricing-container mt-0">
-              <h4 style="background-color: #F7BD3B" class="p-2 m-0">Camarones</h4>
+              <h4 href="/compra" style="background-color: #F7BD3B" class="p-2 m-0">Camarones</h4>
               <div class="plans">
                 <h2>$14.9 <span>la libra</span></h2>
               </div>

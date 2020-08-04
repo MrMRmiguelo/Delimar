@@ -86,7 +86,7 @@ app.get('/create', function(req, res){
       },
       'transactions':[{
           'amount':{
-              'total': totalPrice,
+              'total': '5',
               'currency':'USD'
           },
           'description':'Para mas informacion contactarnos a nuestras redes sociales'
