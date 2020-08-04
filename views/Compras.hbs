@@ -26,6 +26,13 @@
   </nav>
 </header>
 
+
+<script>
+ 
+
+
+</script>
+
 {{!-- Mostrar los emensajes en caso de que existan --}}
 {{#if errors}}
   {{#each errors}}
@@ -47,7 +54,7 @@
               <h4>{{dataValues.name}}</h4>
               <p>{{dataValues.description}}</p>
               <div class="clearfix">
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Comprar</a> <a href="#" class="btn btn-default btn-xs" role="button">Ver Mas</a></p>
+                <p><a href="/add-to-cart/{{this._id}}" class="btn btn-info btn-xs" role="button">Comprar</a> <a href="#" class="btn btn-default btn-xs" role="button">Ver Mas</a></p>
               </div>
             </div>
           </div>
