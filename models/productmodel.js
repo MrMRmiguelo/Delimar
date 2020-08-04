@@ -8,47 +8,53 @@ const slug = require("slug");
 const shortid = require("shortid");
 
 // Creacion del modelo
-const Producto = db.define("producto", {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+const Producto = db.define("productos", {
+    id:{
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
     name: {
-      type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique:{
+          args: true,
+          msg: "Ya existe un producto con ese nombre"
+        }
     },
-    price: {
-      type: Sequelize.FLOAT
+    price:{
+        type: Sequelize.FLOAT
     },
     libra: {
-      type: Sequelize.FLOAT
+        type: Sequelize.FLOAT
     },
     description: {
+        type: Sequelize.STRING
+    },
+    url:{
+        type: Sequelize.STRING
+    },
+    imagepath:{
       type: Sequelize.STRING
     },
-    // image_path: {
-    //   type: Sequelize.STRING,
-    // }
-    // url:{
-    //     type: Sequelize.STRING
-    // }
-  },
-  // {
-  //     hooks: {
-  //         beforeCreate(producto) {
-  //             console.log("Antes de insertar a la base de datos");
-  //             const url = slug(producto.name).toLowerCase();
+},
+{
+    hooks: {
+        beforeCreate(producto) {
+            console.log("Antes de insertar a la base de datos");
+            const url = slug(producto.name).toLowerCase();
 
-  //             producto.url = `${url}_${shortid.generate()}`;
-  //         },
-  //         beforeUpdate(producto){
-  //             console.log("Antes de actualizar en la base");
-  //             const url = slug(producto.name).toLowerCase();
+            producto.url = `${url}_${shortid.generate()}`;
+        },
+        beforeUpdate(producto){
+            console.log("Antes de actualizar en la base");
+            const url = slug(producto.name).toLowerCase();
 
-  //             producto.url = `${url}_${shortid.generate()}`;
-  //         }
-  //     },
-  // }
+            producto.url = `${url}_${shortid.generate()}`;
+        }
+    },
+}
 );
+
 // Importar el modelo para su utilizacion
 module.exports = Producto;

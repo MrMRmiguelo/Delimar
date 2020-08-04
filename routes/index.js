@@ -1,7 +1,8 @@
 // Importar express router
 const express = require("express");
 const routes = express.Router();
-
+const multer = require("multer");
+const shortid = require("shortid");
 
 const { body } = require("express-validator");
 
@@ -28,7 +29,7 @@ module.exports = function () {
 
     routes.get("/agregar_producto", productosController.agregarproducto);
 
-    routes.post("/agregar_producto", /*body("name").notEmpty().trim().escape(),*/ productosController.homeagregarproductos);
+    routes.post("/agregar_producto", productosController.homeagregarproductos);
 
     // routes.post(
     //   "/agregar_producto",
@@ -45,6 +46,13 @@ module.exports = function () {
       usuariosController.crearUsuario
     );
 
+    // routes.post(
+    //   "/homeproductos",
+    //   // Sanitizar el contenido del formulario
+    //   body("user").notEmpty().trim(),
+    //   body("password").notEmpty().trim(),
+    //   delimarController.homeproductos
+    // );
 
     routes.get("/lista_producto", productosController.productosInv);
 
@@ -63,20 +71,15 @@ module.exports = function () {
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
 
- // routes.get("/paypal_token", paypalController.generarTokenPaypal);
-  //routes.post("/paypal_token", paypalController.generarTokenPaypal);
+  routes.get(
+    "/productos/:url",
+    productosController.obtenerProductoUrl
+  );
 
+  routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
-  routes.post('/comprar', (req, res, send) => {
-    res.send ({success: true});
-  })
-  routes.get('/exito', (req, res, send) => {
-    res.send ({success: true});
-  })
-  routes.get('/cancelar', (req, res, send) => {
-    res.send ({success: true});
-  })
-
+  // routes.delete("/proyecto/:url", productosController.eliminar_producto);
 
     return routes;
 }

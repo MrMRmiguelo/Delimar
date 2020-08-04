@@ -1,67 +1,63 @@
 <header>
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
       <a class="navbar-brand" href="/"><img src="/imagenes/delimar.png" class="logo-brand" alt="logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/" id="inicio">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/lista_producto" id="catalogo">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="info">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="contacto">Contactanos</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/" id="inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/lista_producto" id="catalogo">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="info">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="contacto">Contactanos</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+    </nav>
 </header>
 
 <form class="form-signin" method="POST" action="">
-  <div class="page-header header-filter"
-    style="background-image: url(../img/bg1.jpg); background-size: cover; background-position: top center;">
-    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-      {{!-- Alertas --}}
-      {{>messages}}
-      <div class="card card-login">
-        <form class="form" action="/resetear_contrasena/{{token}}" method="POST">
-
-
-
-
-          <div class="p-3  border border-warning" style="margin-top: 100px; background-color: #00B9C9;">
-            <div class="mb-5 mt-2  text-center">
-              <h1 class="text-white">Cambiar contraseña</h1>
-              <p class="text-white">Ingresa tu nueva contraseña</p>
+  <div class="page-header header-filter" style="background-image: url(../img/bg1.jpg); background-size: cover; background-position: top center;">
+   <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                {{!-- Alertas --}}
+                {{>messages}}
+                <div class="card card-login">
+                    <form class="form" action="/resetear_contrasena/{{token}}" method="POST">
+                        <div class="card-header card-header-primary text-center">
+                            <h4>Cambia tu contraseña</h4>
+                        </div>
+                        <p class="description text-center">Ingresa tu nueva contraseña</p>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña" required>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="/iniciar_sesion">Ir al inicio de sesión</a>
+                        </div>
+                        <div class="footer text-center">
+                            <button class="btn btn-primary btn-link btn-wd btn-lg" type="submit">Cambiar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-              <label class="text-white">Contraseña:</label>
-              <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña"
-                required>
-
-
-              <button class="btn btn-sm btn-light m-3" type="submit" style="background-color: #F7BD3B;">Cambiar</button>
-              <div class="form-group form-check">
-                <a href="/iniciar_sesion" style="color: #F7BD3B;">Ir al inicio de sesión</a>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
-  </div>
-  </div>
-
+    </div>
+    
 </form>
