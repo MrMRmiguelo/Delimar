@@ -33,7 +33,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
-            imagepath: "../public/imagenes/uploadimages/"+filename
+            imagepath: "../public/imagenes/upload_images/"+filename
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",
@@ -67,4 +67,23 @@ exports.productosInv = async(req, res , next) =>{
 
         res.render("lista", errors);
     }
+}
+
+//Eliminar un producto
+exports.eliminarProducto = async(req, res, next) => {
+  //Obtener el url del producto a traves de un query de la peticion
+  const { url } = req.query;
+
+  //Intentar eliminar el producto
+  try {
+    const resultado = await Producto.destroy({
+      where: {
+        url
+      }
+    });
+    res.status(200).send("Producto eliminado correctamente");
+  } catch (error) {
+    //SI el producto no se elimina
+    return next;
+  }
 }
