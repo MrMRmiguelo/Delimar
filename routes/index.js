@@ -12,11 +12,12 @@ const usuariosController =  require("../controller/usuarioController");
 const productosController = require("../controller/productsController");
 const paypalController = require("../controller/paypalController");
 
+
 module.exports = function () {
 
     routes.get("/", delimarController.home);
 
-    routes.get("/prueba", delimarController.prueba);
+ 
 
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
@@ -71,8 +72,16 @@ module.exports = function () {
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
 
-  routes.get("/paypal_token", paypalController.generarTokenPaypal);
-  routes.post("/paypal_token", paypalController.generarTokenPaypal);
+  //routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  //routes.post("/paypal_token", paypalController.generarPayoutPaypal);
+
+
+
+
+
+
+
+
 
   // routes.delete("/proyecto/:url", productosController.eliminar_producto);
 

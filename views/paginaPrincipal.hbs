@@ -21,12 +21,18 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="contacto">Contactanos</a>
           </li>
+          {{#if login}}
           <li class="nav-item">
             <a class="nav-link" href="/iniciar_sesion" id="inicio">Iniciar Sesion</a>
           </li>
-          <li class="nav-item">
+          {{/if}}
+          {{#else}}
+           <li class="nav-item">
             <a class="nav-link" href="/cerrar_sesion" id="inicio">Cerrar Sesion</a>
           </li>
+          
+          {{/else}}
+         
         </ul>
       </div>
     </div>
