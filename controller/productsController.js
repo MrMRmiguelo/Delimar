@@ -1,14 +1,34 @@
+const express = require("express");
 const Producto = require("../models/productmodel");
 const { lista } = require("./delimarController");
 const multer = require("multer");
 const shortid = require("shortid");
+const path = require("path");
+
+const app = express();
+
+//Guardar las imagenes con un nombre aleatorio
+const storage = multer.diskStorage({
+  //Ruta en la cual se guardaran las imagenes
+  destination: "../public/imagenes",
+  //configuracion del callback con shortid para el nombre
+  filename: (req, file, cb) =>{
+    cb(null, shortid.generate() + path.extname(file.originalname));
+  }
+});
+
+app.use(multer({
+  storage,
+}).single('image_path'));
+
 
 exports.agregarproducto = (req, res, next) => {
     res.render("homeagregarproductos");
 };
 
 exports.homeagregarproductos = async(req, res, next) => {
-   const { name, price, libra, description } = req.body;
+   const { name, price, libra, description, image_path } = req.body;
+
    const errors = [];
 
    if (!name){
@@ -19,6 +39,8 @@ exports.homeagregarproductos = async(req, res, next) => {
      errors.push({error: "Debe ingresar la cantidad de libras.", type: "alert-danger"});
    }else if (!description) {
      errors.push({error: "El producto debe tener una description", type: "alert-danger"});
+   }else if (!image_path) {
+     errors.push({error: "Debe subir una foto para el producto", type: "alert-danger"});
    }
 
    //Si hay algun error
@@ -34,6 +56,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
+            image_path,
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",

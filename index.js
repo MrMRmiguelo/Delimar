@@ -45,15 +45,15 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Guardar las imagenes con un nombre aleatorio
-const storage = multer.diskStorage({
-  //Ruta en la cual se guardaran las imagenes
-  destination: "public/imagenes",
-  //configuracion del callback con shortid para el nombre
-  filename: (req, file, cb) =>{
-    cb(null, shortid.generate() + path.extname(file.originalname));
-  }
-});
+// //Guardar las imagenes con un nombre aleatorio
+// const storage = multer.diskStorage({
+//   //Ruta en la cual se guardaran las imagenes
+//   destination: "public/imagenes",
+//   //configuracion del callback con shortid para el nombre
+//   filename: (req, file, cb) =>{
+//     cb(null, shortid.generate() + path.extname(file.originalname));
+//   }
+// });
 
 
 // Habilitar el uso de cookieParser
@@ -86,9 +86,15 @@ app.use((req, res, next) => {
    });
 
 //Ejecutar el middleware de Multer
-app.use(multer({
-  storage,
-}).single('picture'));
+// app.use(multer({
+//   storage,
+// }).single('picture'));
+
+//Mostrar invalid field de multer en caso de que ocurra
+app.use(function (err, req, res, next) {
+  console.log('This is the invalid field ->', err.field)
+  next(err)
+});
 
 //Rutas para el servidor
 app.use("/", routes());
