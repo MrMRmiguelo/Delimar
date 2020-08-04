@@ -1,7 +1,8 @@
 // Importar express router
 const express = require("express");
 const routes = express.Router();
-
+const multer = require("multer");
+const shortid = require("shortid");
 
 const { body } = require("express-validator");
 
@@ -20,13 +21,13 @@ module.exports = function () {
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
     routes.get("/iniciar_sesion", usuariosController.IniciarSesion);
-    
+
     routes.post("/iniciar_sesion",
     body("email").notEmpty().trim(),
-    body("password").notEmpty().trim(), 
+    body("password").notEmpty().trim(),
     delimarController.autenticarUsuario);
 
-    routes.get("/agregar_producto",body("name").notEmpty().trim().escape(), productosController.agregarproducto);
+    routes.get("/agregar_producto", productosController.agregarproducto);
 
     routes.post("/agregar_producto", productosController.homeagregarproductos);
 
@@ -55,7 +56,7 @@ module.exports = function () {
 
     routes.get("/lista_producto", productosController.productosInv);
 
-  
+
   routes.get("/reestablecer_contrasena", usuariosController.ReestablecerContrasena );
 
   routes.post("/reestablecer_contrasena", delimarController.enviarToken);

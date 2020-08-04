@@ -4,13 +4,20 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 // Importar connect-flash para disponer de los errores en todo el sitio
 const flash = require("connect-flash");
-const helpers = require("./helpers");
-//Importar el modulo Multer
 const multer = require("multer");
-//Importar shortid para el nombre de las imagenes
 const shortid = require("shortid");
-const path = require("path");
 
+const helpers = require("./helpers");
+
+//Almacenar las imaganes con multer
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'public/imagenes/upload_images');
+  },
+  filename: function(req, file, cb){
+    cb(null, shortid.generate() + file.originalname);
+  }
+});
 
 //Importar todas las rutas de routes
 const routes = require("./routes");
@@ -45,19 +52,10 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// //Guardar las imagenes con un nombre aleatorio
-// const storage = multer.diskStorage({
-//   //Ruta en la cual se guardaran las imagenes
-//   destination: "public/imagenes",
-//   //configuracion del callback con shortid para el nombre
-//   filename: (req, file, cb) =>{
-//     cb(null, shortid.generate() + path.extname(file.originalname));
-//   }
-// });
-
 
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
+
 
 // Habilitar las sesiones de usuario
 app.use(session({
@@ -85,16 +83,25 @@ app.use((req, res, next) => {
      next();
    });
 
-//Ejecutar el middleware de Multer
-// app.use(multer({
-//   storage,
-// }).single('picture'));
+//Filtros para las imagenes
+const fileFilter = (req, file, cb) => {
+  //Aceptar la imagen si cumple con los parametros
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg'){
+    cb(null, true);
+  }else {
+    cb(null, false);
+  }
+};
 
-//Mostrar invalid field de multer en caso de que ocurra
-app.use(function (err, req, res, next) {
-  console.log('This is the invalid field ->', err.field)
-  next(err)
-});
+app.use(multer({
+  storage: storage,
+  limits:{
+    //limite de 10mb como maximo para cada imagen
+    fileSize: 1024 * 1024 * 10
+  },
+  fileFilter: fileFilter,
+}).single('image'));
+
 
 //Rutas para el servidor
 app.use("/", routes());
