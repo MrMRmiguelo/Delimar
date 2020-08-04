@@ -35,26 +35,26 @@
   {{/each}}
 {{/if}}
 
-<div class="container"> 
-     <div class="row">
-       {{#if productos}}
-        {{#each productos}}
-            <div class="col-xs-18 col-sm-6 col-md-3">
-               <div class="thumbnail">
-                  <img src={{dataValues.imagepath}} alt="{{dataValues.name}}">
-                  <div class="caption">
-                  <h4>{{dataValues.name}}</h4>
-                  <p>{{dataValues.description}}</p>
-                 <div class="clearfix">
-                   <p><a href="#" class="btn btn-info btn-xs" role="button">Comprar</a> <a href="#" class="btn btn-default btn-xs" role="button">Ver Mas</a></p>
-                   </div>
-                  </div>
-                 </div>
-                   </div>
-      
-        
-          {{/each}}   
-        {{/if}}
-        
-    </div>
+<div class="container">
+  <div class="row">
+    {{#if productos}}
+      {{#each productos}}
+        <div class="col-xs-18 col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <img src={{dataValues.imagepath}} alt="{{dataValues.name}}">
+            <div class="caption">
+              <h4>{{dataValues.name}}</h4>
+              <p>{{dataValues.description}}</p>
+              <div class="clearfix">
+                <p><a href="#" class="btn btn-info btn-xs" role="button">Comprar</a> <a href="#" class="btn btn-default btn-xs" role="button">Ver Mas</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      {{/each}}
+    {{/if}}
+
+  </div>
 </div>
