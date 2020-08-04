@@ -26,6 +26,10 @@
   </nav>
 </header>
 
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="padding: 100px 0;">
+  <h1 class="display-4">{{dataValues.name}}</h1>
+</div>
+
 {{!-- Mostrar los emensajes en caso de que existan --}}
 {{#if errors}}
   {{#each errors}}
@@ -34,28 +38,18 @@
     </div>
   {{/each}}
 {{/if}}
-
-<div class="container">
-  
-  <div class="row">
-    {{#if productos}}
-      {{#each productos}}
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src={{dataValues.imagepath}} class="card-img-top" alt="{{dataValues.name}}">
-            <div class="caption">
-              <h4>{{dataValues.name}}</h4>
-              <p>{{dataValues.description}}</p>
-              <div class="clearfix">
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Comprar</a> <a href="#" class="btn btn-default btn-xs" role="button">Ver Mas</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      {{/each}}
-    {{/if}}
-
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{dataValues.imagepath}}" class="card-img" alt="{{dataValues.name}}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{dataValues.name}}</h5>
+        <p class="card-text">{{dataValues.description}}</p>
+        <p class="card-text"><small class="text-muted">${{dataValues.price}}</small></p>
+        <p class="card-text"><small class="text-muted">Existencias: {{dataValues.libra}} libra(s)</small></p>
+      </div>
+    </div>
   </div>
 </div>

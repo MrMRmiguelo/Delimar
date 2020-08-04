@@ -12,12 +12,11 @@ const usuariosController =  require("../controller/usuarioController");
 const productosController = require("../controller/productsController");
 const paypalController = require("../controller/paypalController");
 
-
 module.exports = function () {
 
     routes.get("/", delimarController.home);
 
- 
+    routes.get("/prueba", delimarController.prueba);
 
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
@@ -69,67 +68,16 @@ module.exports = function () {
   routes.post("/success", delimarController.success);
   routes.get("/cancel", delimarController.cancel);
   routes.post("/cancel", delimarController.cancel);
-  routes.get("/compra", productosController.compras);
-  routes.post("/compra", productosController.compras);
+  routes.get("/compra", delimarController.compra);
+  routes.post("/compra", delimarController.compra);
 
-  //routes.get("/paypal_token", paypalController.generarTokenPaypal);
-  //routes.post("/paypal_token", paypalController.generarPayoutPaypal);
-  routes.get('/add-to-cart/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
+  routes.get(
+    "/productos/:url",
+    productosController.obtenerProductoUrl
+  );
 
-    Product.findById(productId, function(err, product) {
-       if (err) {
-           return res.redirect('/');
-       }
-        cart.add(product, product.id);
-        req.session.cart = cart;
-        console.log(req.session.cart);
-        res.redirect('/');
-    });
-});
-
-
-
-routes.get('/reduce/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    cart.reduceByOne(productId);
-    req.session.cart = cart;
-    res.redirect('/carrito');
-});
-
-routes.get('/remove/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    cart.removeItem(productId);
-    req.session.cart = cart;
-    res.redirect('/carrito');
-});
-
-routes.get('/carrito', function(req, res, next) {
-   if (!req.session.cart) {
-       return res.render('/carrito', {products: null});
-   } 
-    var cart = new Cart(req.session.cart);
-    res.render('/carrito', {products: cart.generateArray(), totalPrice: cart.totalPrice});
-});
-
-routes.get('/carrito', function(req, res, next) {
-  if (!req.session.cart) {
-      return res.render('/carrito', {products: null});
-  } 
-   var cart = new Cart(req.session.cart);
-   res.render('/carrito', {products: cart.generateArray(), totalPrice: cart.totalPrice});
-});
-
-
-
-
-
-
+  routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
   // routes.delete("/proyecto/:url", productosController.eliminar_producto);
 

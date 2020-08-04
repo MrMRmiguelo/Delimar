@@ -20,6 +20,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="contacto">Contactanos</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/agregar_producto" id="agregar">Agregar producto</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -50,7 +53,7 @@
           <div class="card-body">
             <h5 class="card-title">{{dataValues.name}}</h5>
             <p class="card-text">{{dataValues.description}}</p>
-            <a href="#" class="btn btn-primary">Comprar</a><br><br>
+            <a href="/productos/{{dataValues.url}}" class="btn btn-primary">Comprar</a><br><br>
             <a type="button" class="btn btn-success">Modificar</a><br><br>
             <button id="eliminar_producto" data-producto-url={{dataValues.url}} type="button" class="btn btn-danger">Eliminar</button>
           </div>

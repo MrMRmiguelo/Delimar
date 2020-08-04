@@ -69,18 +69,19 @@ exports.productosInv = async(req, res , next) =>{
     }
 }
 
-exports.compras = async(req, res , next) =>{
-  const errors = [];
+//Buscar el producto por su url
+exports.obtenerProductoUrl = async(req, res, next) =>{
+  //Obtener el producto
   try {
-    const productos = await Producto.findAll();
-    res.render("Compras", {productos});
+    const producto = Producto.findOne({
+      where:{
+        url: req.params.url
+      },
+    });
+    res.render("verProducto", {producto: producto.dataValues});
 
   } catch (error) {
-      errors.push({error: "Error al obtener los productos",
-      type: "alert-warning"
-      });
-
-      res.render("Compras", errors);
+    res.redirect("/");
   }
 }
 
@@ -102,5 +103,3 @@ exports.eliminarProducto = async(req, res, next) => {
     return next;
   }
 }
-
-
