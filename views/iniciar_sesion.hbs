@@ -1,58 +1,51 @@
 <header>
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
       <a class="navbar-brand" href="/"><img src="/imagenes/delimar.png" class="logo-brand" alt="logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/" id="inicio">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/lista_producto" id="catalogo">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="info">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="contacto">Contactanos</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/" id="inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/lista_producto" id="catalogo">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="info">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="contacto">Contactanos</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+    </nav>
 </header>
 
-<form class="form-signin  mt-5 mb-3" method="POST" action="">
-  {{>messages}}
-  <div class="p-3  border border-warning" style="margin-top: 50px; background-color: #00B9C9;">
-    <div class="mb-5 mt-2  text-center">
-      <h1 class="text-white">Inicia Sesion </h1>
-      <p class="text-white">Bienvenido Delimar Premium</p>
+<form class="form-signin" method="POST" action="">
+   {{>messages}}
+    <div class="mb-4 text-center" style="padding: 100px 0;">
+        <h1>Inicia Sesion </h1>
+        <p>Bienvenido Delimar Premium</p>
     </div>
-
-    <div class="form-group">
-      <label class="text-white">Correo electrónico:</label>
-      <input type="email" class="form-control" name="email" id="email" placeholder="delimar@gmail.sv" required>
-
+    <div class="form-label-group">
+        <label for="email">Correo Electronico</label>
+        <input type="email" name="email" id="email" placeholder="delimar@gmail.sv" required>
     </div>
-    <div class="form-group">
-      <label class="text-white">Contraseña:</label>
-      <input type="password" name="password" id="password" class="form-control">
+    <div class="form-label-group">
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" id="password" placeholder="Contraseña" required>
     </div>
-    <div class="form-group form-check">
-      <a href="/reestablecer_contrasena" style="color: #F7BD3B;">¿Has olvidado tu contraseña?</a>
+     <div class="footer text-center">
+                            <a href="/reestablecer_contrasena">¿Has olvidado tu contraseña?</a>
+                            
+                        </div>
+    <div class="mb3">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #00B9C9;">Iniciar sesión</button>
     </div>
-    <div class="form-group form-check">
-      <a href="/crear_usuario" style="color: #F7BD3B;">¿Aun no tienes una cuenta?</a>
-    </div>
-    <button class="btn btn-sm btn-light " type="submit" style="background-color: #F7BD3B;">Iniciar
-      sesión</button>
-
-  </div>
-
+    
 </form>

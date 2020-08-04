@@ -5,7 +5,12 @@ const exphbs = require("express-handlebars");
 // Importar connect-flash para disponer de los errores en todo el sitio
 const flash = require("connect-flash");
 const helpers = require("./helpers");
+//Importar el modulo Multer
 const multer = require("multer");
+//Importar shortid para el nombre de las imagenes
+const shortid = require("shortid");
+const path = require("path");
+
 
 //Importar todas las rutas de routes
 const routes = require("./routes");
@@ -14,11 +19,6 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 //importar passport para inicio de sesion
 const passport = require("./config/passport");
-
-//importar librearias para Paypal
-
-const ejs = require('ejs');
-const paypal = require('paypal-rest-sdk');
 
 // Conexion con la base de dattos MYSQL
 const db = require("./config/db");
@@ -44,6 +44,17 @@ app.engine("hbs",exphbs({defaultLayout: 'main', extname: ".hbs"}));
 app.set("view engine", "hbs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Guardar las imagenes con un nombre aleatorio
+const storage = multer.diskStorage({
+  //Ruta en la cual se guardaran las imagenes
+  destination: "public/imagenes",
+  //configuracion del callback con shortid para el nombre
+  filename: (req, file, cb) =>{
+    cb(null, shortid.generate() + path.extname(file.originalname));
+  }
+});
+
 
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
@@ -73,6 +84,11 @@ app.use((req, res, next) => {
      // Continuar con el camino del middleware
      next();
    });
+
+//Ejecutar el middleware de Multer
+app.use(multer({
+  storage,
+}).single('picture'));
 
 //Rutas para el servidor
 app.use("/", routes());

@@ -20,15 +20,15 @@ module.exports = function () {
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
     routes.get("/iniciar_sesion", usuariosController.IniciarSesion);
-
+    
     routes.post("/iniciar_sesion",
     body("email").notEmpty().trim(),
-    body("password").notEmpty().trim(),
+    body("password").notEmpty().trim(), 
     delimarController.autenticarUsuario);
 
-    routes.get("/agregar_producto", productosController.agregarproducto);
+    routes.get("/agregar_producto",body("name").notEmpty().trim().escape(), productosController.agregarproducto);
 
-    routes.post("/agregar_producto", /*body("name").notEmpty().trim().escape(),*/ productosController.homeagregarproductos);
+    routes.post("/agregar_producto", productosController.homeagregarproductos);
 
     // routes.post(
     //   "/agregar_producto",
@@ -45,10 +45,17 @@ module.exports = function () {
       usuariosController.crearUsuario
     );
 
+    // routes.post(
+    //   "/homeproductos",
+    //   // Sanitizar el contenido del formulario
+    //   body("user").notEmpty().trim(),
+    //   body("password").notEmpty().trim(),
+    //   delimarController.homeproductos
+    // );
 
     routes.get("/lista_producto", productosController.productosInv);
 
-
+  
   routes.get("/reestablecer_contrasena", usuariosController.ReestablecerContrasena );
 
   routes.post("/reestablecer_contrasena", delimarController.enviarToken);
@@ -63,19 +70,8 @@ module.exports = function () {
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
 
- // routes.get("/paypal_token", paypalController.generarTokenPaypal);
-  //routes.post("/paypal_token", paypalController.generarTokenPaypal);
-
-
-  routes.post('/comprar', (req, res, send) => {
-    res.send ({success: true});
-  })
-  routes.get('/exito', (req, res, send) => {
-    res.send ({success: true});
-  })
-  routes.get('/cancelar', (req, res, send) => {
-    res.send ({success: true});
-  })
+  routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
 
     return routes;

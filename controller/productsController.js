@@ -2,23 +2,6 @@ const Producto = require("../models/productmodel");
 const { lista } = require("./delimarController");
 const multer = require("multer");
 const shortid = require("shortid");
-//Importar path para el nombre de las imagenes
-const path = require("path");
-
-//Guardar las imagenes con un nombre aleatorio
- const storage = multer.diskStorage({
-// Ruta en la cual se guardaran las imagenes
-  destination: "../public/imagenes",
-   //configuracion del callback con shortid para el nombre
-   filename: (req, file, cb) => {
-    cb(null, shortid.generate() + path.extname(file.originalname));
-   }
- });
-
-//Variable para obtener los datos con Multer
-const guardar = multer({
-  storage,
- }).single('picture');
 
 exports.agregarproducto = (req, res, next) => {
     res.render("homeagregarproductos");
@@ -51,10 +34,9 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
-            image_path: guardar.storage,
         });
         errors.push({
-            message: "Producto almacenado satisfactoriamente",
+            error: "Producto almacenado satisfactoriamente",
             type: "alert-sucess",
         });
 
