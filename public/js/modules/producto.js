@@ -20,11 +20,22 @@ btnEliminar.addEventListener("click", (e) => {
     cancelButtonColor: "#d33",
   }).then((result) => {
     //SI el usuario confima la eliminacion del producto
-    if (result.value){
+    if (result.value) {
       //Obtener la url del sitio
       const url = `${location.origin}/producto/${urlProducto}`;
 
       //Implementacion de AXIOS
+      // axios.delete(url, {
+      //   params: {
+      //     url.Producto
+      //   }
+      // }).then(function(response) {
+      //   Swal.fire(
+      //     "¡Eliminado!",
+      //     response.data,
+      //     "success"
+      //   )
+      // });
     }
   });
 });

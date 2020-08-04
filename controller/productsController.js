@@ -33,7 +33,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
-            imagepath: "../public/imagenes/upload_images/"+filename
+            imagepath: "/imagenes/upload_images/"+filename,
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",

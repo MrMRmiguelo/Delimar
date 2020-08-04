@@ -74,7 +74,7 @@ module.exports = function () {
   routes.get("/paypal_token", paypalController.generarTokenPaypal);
   routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
-  routes.delete("/proyecto/:url", productosController.eliminar_producto);
+  // routes.delete("/proyecto/:url", productosController.eliminar_producto);
 
     return routes;
 }
