@@ -34,6 +34,7 @@ const db = require("./config/db");
 //Importar los modelos de productos
 require("./models/productmodel");
 require("./models/usuario");
+var cart = require("./models/cart")
 
 // Conexion mediante promesas
 db.sync()
@@ -59,6 +60,8 @@ app.use(function(req, res, next) {
 });
 
 
+
+
 var client_id = 'AaTkm8etF7Sv2tcpx7Rv6f7p2co6okcxSZcpjW0CgRbSpx1Qe0jImVRLgaQLMYHxz_EfnHd1eR-gTVaw';
 var secret = 'EE8Vi6CpRgxi7v0WPd-mkztA-aXTqKDTfOtmezIcYJ2ca3BqdkugjAWVDClem08mmshoG5vmSCd8fX4z';
 
@@ -71,6 +74,7 @@ paypal.configure({
 });
 app.get('/create', function(req, res){
   //build PayPal payment request
+  var total = cart.totalPrice;
   var payReq = JSON.stringify({
       'intent':'sale',
       'redirect_urls':{
@@ -82,10 +86,10 @@ app.get('/create', function(req, res){
       },
       'transactions':[{
           'amount':{
-              'total':'7.47',
+              'total': totalPrice,
               'currency':'USD'
           },
-          'description':'This is the payment transaction description.'
+          'description':'Para mas informacion contactarnos a nuestras redes sociales'
       }]
   });
 
@@ -121,7 +125,7 @@ app.get('/process', function(req, res){
           console.error(error);
       } else {
           if (payment.state == 'approved'){ 
-              res.redirect('/process');
+              res.send('pago realizado con exito');
           } else {
               res.send('El pago no fue realizado con exito, contactenos para mas informacion');
           }
