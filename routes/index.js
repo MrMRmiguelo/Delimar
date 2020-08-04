@@ -91,42 +91,6 @@ module.exports = function () {
 
 
 
-routes.get('/reduce/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    cart.reduceByOne(productId);
-    req.session.cart = cart;
-    res.redirect('/carrito');
-});
-
-routes.get('/remove/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    cart.removeItem(productId);
-    req.session.cart = cart;
-    res.redirect('/carrito');
-});
-
-routes.get('/carrito', function(req, res, next) {
-   if (!req.session.cart) {
-       return res.render('/carrito', {products: null});
-   } 
-    var cart = new Cart(req.session.cart);
-    res.render('/carrito', {products: cart.generateArray(), totalPrice: cart.totalPrice});
-});
-
-routes.get('/carrito', function(req, res, next) {
-  if (!req.session.cart) {
-      return res.render('/carrito', {products: null});
-  } 
-   var cart = new Cart(req.session.cart);
-   res.render('/carrito', {products: cart.generateArray(), totalPrice: cart.totalPrice});
-});
-
-
-
 
 
 
