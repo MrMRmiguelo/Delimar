@@ -26,6 +26,10 @@ exports.usuarioAutenticado = (req, res, next) => {
   return res.redirect("/iniciar_sesion");
 };
 
+exports.compras = (req, res, next) => {
+  res.render("Compras", { layout: "auth" });
+};
+
 
 // 
 
@@ -33,9 +37,6 @@ exports.home = (req, res, next) => {
     res.render("paginaPrincipal");
 };
 
-exports.prueba = (req, res, next) => {
-    res.send("Prueba");
-};
 
 
 exports.lista = (req, res, next) => {
@@ -60,6 +61,11 @@ exports.cerrarSesion = (req, res, next) => {
     res.redirect("/iniciar_sesion");
   });
 };
+
+exports.ReestablecerContrasena = (req, res, next) => {
+  res.render("prueba", { layout: "auth" });
+};
+
 
   //Generar token para Reestablecer contraseña
   exports.enviarToken = async (req, res, next) => {
