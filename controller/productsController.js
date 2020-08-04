@@ -69,6 +69,21 @@ exports.productosInv = async(req, res , next) =>{
     }
 }
 
+exports.compras = async(req, res , next) =>{
+  const errors = [];
+  try {
+    const productos = await Producto.findAll();
+    res.render("Compras", {productos});
+
+  } catch (error) {
+      errors.push({error: "Error al obtener los productos",
+      type: "alert-warning"
+      });
+
+      res.render("Compras", errors);
+  }
+}
+
 //Eliminar un producto
 exports.eliminarProducto = async(req, res, next) => {
   //Obtener el url del producto a traves de un query de la peticion
@@ -87,3 +102,5 @@ exports.eliminarProducto = async(req, res, next) => {
     return next;
   }
 }
+
+
