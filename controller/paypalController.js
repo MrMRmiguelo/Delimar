@@ -1,5 +1,5 @@
 
-
+/*
 const paypal = require("paypal-rest-sdk");
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
@@ -41,4 +41,4 @@ paypal.payment.create(create_payment_json, function (error, payment) {
         console.log("Create Payment Response");
         console.log(payment);
     }
-});
+});*/

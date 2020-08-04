@@ -26,9 +26,9 @@ module.exports = function () {
     body("password").notEmpty().trim(),
     delimarController.autenticarUsuario);
 
-    routes.get("/agregar_producto",body("name").notEmpty().trim().escape(), productosController.agregarproducto);
+    routes.get("/agregar_producto", productosController.agregarproducto);
 
-    routes.post("/agregar_producto", productosController.homeagregarproductos);
+    routes.post("/agregar_producto", /*body("name").notEmpty().trim().escape(),*/ productosController.homeagregarproductos);
 
     // routes.post(
     //   "/agregar_producto",
@@ -45,13 +45,6 @@ module.exports = function () {
       usuariosController.crearUsuario
     );
 
-    // routes.post(
-    //   "/homeproductos",
-    //   // Sanitizar el contenido del formulario
-    //   body("user").notEmpty().trim(),
-    //   body("password").notEmpty().trim(),
-    //   delimarController.homeproductos
-    // );
 
     routes.get("/lista_producto", productosController.productosInv);
 
@@ -70,11 +63,11 @@ module.exports = function () {
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
 
-  routes.get("/paypal_token", paypalController.generarTokenPaypal);
-  routes.post("/paypal_token", paypalController.generarTokenPaypal);
+ // routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  //routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
 
-  routes.get('/comprar', (req, res, send) => {
+  routes.post('/comprar', (req, res, send) => {
     res.send ({success: true});
   })
   routes.get('/exito', (req, res, send) => {
