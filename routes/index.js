@@ -1,7 +1,8 @@
 // Importar express router
 const express = require("express");
 const routes = express.Router();
-
+const multer = require("multer");
+const shortid = require("shortid");
 
 const { body } = require("express-validator");
 
@@ -20,13 +21,13 @@ module.exports = function () {
     routes.get("/crear_usuario", usuariosController.crearUsuario);
 
     routes.get("/iniciar_sesion", usuariosController.IniciarSesion);
-    
+
     routes.post("/iniciar_sesion",
     body("email").notEmpty().trim(),
-    body("password").notEmpty().trim(), 
+    body("password").notEmpty().trim(),
     delimarController.autenticarUsuario);
 
-    routes.get("/agregar_producto",body("name").notEmpty().trim().escape(), productosController.agregarproducto);
+    routes.get("/agregar_producto", productosController.agregarproducto);
 
     routes.post("/agregar_producto", productosController.homeagregarproductos);
 
@@ -55,7 +56,7 @@ module.exports = function () {
 
     routes.get("/lista_producto", productosController.productosInv);
 
-  
+
   routes.get("/reestablecer_contrasena", usuariosController.ReestablecerContrasena );
 
   routes.post("/reestablecer_contrasena", delimarController.enviarToken);
@@ -67,12 +68,40 @@ module.exports = function () {
   routes.post("/success", delimarController.success);
   routes.get("/cancel", delimarController.cancel);
   routes.post("/cancel", delimarController.cancel);
+
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
+
+  routes.get("/compra", productosController.compras);
+  routes.post("/compra", productosController.compras);
+
+  //routes.get("/paypal_token", paypalController.generarTokenPaypal);
+  //routes.post("/paypal_token", paypalController.generarPayoutPaypal);
+  routes.get('/add-to-cart/:id', function(req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    Product.findById(productId, function(err, product) {
+       if (err) {
+           return res.redirect('/');
+       }
+        cart.add(product, product.id);
+        req.session.cart = cart;
+        console.log(req.session.cart);
+        res.redirect('/');
+    });
+});
+
+
+  routes.get(
+    "/productos/:url",
+    productosController.obtenerProductoUrl
+  );
 
   routes.get("/paypal_token", paypalController.generarTokenPaypal);
   routes.post("/paypal_token", paypalController.generarTokenPaypal);
 
+  // routes.delete("/proyecto/:url", productosController.eliminar_producto);
 
     return routes;
 }

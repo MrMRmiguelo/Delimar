@@ -60,7 +60,7 @@ const Usuario = db.define("usuario",
     },
     token: Sequelize.STRING,
     expiration: Sequelize.DATE
-    
+
   },
   {
     hooks: {
@@ -71,7 +71,7 @@ const Usuario = db.define("usuario",
         );
       },
     },
-    
+
   }
 );
 
@@ -79,6 +79,8 @@ const Usuario = db.define("usuario",
 Usuario.prototype.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 }
+
+//
 
 // Exportar el modulo
 module.exports = Usuario;

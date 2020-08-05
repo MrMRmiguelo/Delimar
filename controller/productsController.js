@@ -1,31 +1,13 @@
 const Producto = require("../models/productmodel");
 const { lista } = require("./delimarController");
-const multer = require("multer");
-const shortid = require("shortid");
-//Importar path para el nombre de las imagenes
-const path = require("path");
-
-// //Guardar las imagenes con un nombre aleatorio
-// const storage = multer.diskStorage({
-//   //Ruta en la cual se guardaran las imagenes
-//   destination: "../public/imagenes",
-//   //configuracion del callback con shortid para el nombre
-//   filename: (req, file, cb) => {
-//     cb(null, shortid.generate() + path.extname(file.originalname));
-//   }
-// });
-//
-// //Variable para obtener los datos con Multer
-// const guardar = multer({
-//   storage,
-// }).single('picture');
 
 exports.agregarproducto = (req, res, next) => {
     res.render("homeagregarproductos");
 };
 
 exports.homeagregarproductos = async(req, res, next) => {
-   const { name, price, libra, description, image_path } = req.body;
+   const { name, price, libra, description } = req.body;
+   const {filename} = req.file;
    const errors = [];
 
    if (!name){
@@ -36,8 +18,6 @@ exports.homeagregarproductos = async(req, res, next) => {
      errors.push({error: "Debe ingresar la cantidad de libras.", type: "alert-danger"});
    }else if (!description) {
      errors.push({error: "El producto debe tener una description", type: "alert-danger"});
-   }else if (!image_path){
-     errors.push({error: "Debe subir una imagen para el producto", type: "alert-danger"});
    }
 
    //Si hay algun error
@@ -53,7 +33,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             price,
             libra,
             description,
-            // image_path,
+            imagepath: "/imagenes/upload_images/"+filename,
         });
         errors.push({
             error: "Producto almacenado satisfactoriamente",
@@ -87,4 +67,39 @@ exports.productosInv = async(req, res , next) =>{
 
         res.render("lista", errors);
     }
+}
+
+//Buscar el producto por su url
+exports.obtenerProductoUrl = async(req, res, next) =>{
+  //Obtener el producto
+  try {
+    const producto = Producto.findOne({
+      where:{
+        url: req.params.url
+      },
+    });
+    res.render("verProducto", {producto: producto.dataValues});
+
+  } catch (error) {
+    res.redirect("/");
+  }
+}
+
+//Eliminar un producto
+exports.eliminarProducto = async(req, res, next) => {
+  //Obtener el url del producto a traves de un query de la peticion
+  const { url } = req.query;
+
+  //Intentar eliminar el producto
+  try {
+    const resultado = await Producto.destroy({
+      where: {
+        url
+      }
+    });
+    res.status(200).send("Producto eliminado correctamente");
+  } catch (error) {
+    //SI el producto no se elimina
+    return next;
+  }
 }
