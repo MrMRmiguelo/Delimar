@@ -1,7 +1,7 @@
 const Usuario = require("../models/usuario");
 
 exports.crearCuentaAdmin = (req, res, next) =>{
-    res.render("crearUsuario", {layout: "auth"});
+    res.render("userSesions/crearUsuario", {layout: "auth"});
 }
 
 exports.crearUsuario = async(req, res, next) => {
@@ -12,12 +12,12 @@ exports.crearUsuario = async(req, res, next) => {
             fullname,
             email,
             user,
-            password            
+            password
         });
 
         res.redirect("iniciar_sesion");
     } catch (error) {
-        res.render("crearUsuario", { layout: "auth", error: error.message });
+        res.render("userSesions/crearUsuario", { layout: "auth", error: error.message });
     }
 }
 
@@ -25,7 +25,7 @@ exports.IniciarSesion = (req, res, next) => {
 
     const messages = res.locals.messages;
 
-    res.render("iniciar_sesion", { layout: "auth", messages });
+    res.render("userSesions/iniciar_sesion", { layout: "auth", messages });
 };
 
 exports.ReestablecerContrasena = (req, res, next) => {
