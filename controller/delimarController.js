@@ -13,7 +13,7 @@ exports.autenticarUsuario = passport.authenticate("local", {
     failureRedirect: "/iniciar_sesion",
     badRequestMessage: "Debes ingresar tu usuario y/o tu contraseña",
     failureFlash: true,
-    
+
   });
 
     // Verificar si el usuario está autenticado o no // Sesion middleware
@@ -27,10 +27,10 @@ exports.usuarioAutenticado = (req, res, next) => {
 };
 
 
-// 
+//
 
 exports.home = (req, res, next) => {
-    res.render("paginaPrincipal");
+    res.render("index");
 };
 
 exports.prueba = (req, res, next) => {
@@ -70,22 +70,22 @@ exports.cerrarSesion = (req, res, next) => {
         email,
       },
     });
-  
+
     // Si el usuario no existe
     if (!usuario) {
       req.flash("error", "¡Este usuario no está registrado en Taskily!");
       res.redirect("/reestablecer_contrasena");
     }
-  
+
     // Si el usuario existe
     // Generar un token único con una fecha de expiración
     usuario.token = crypto.randomBytes(20).toString("hex");
     usuario.expiration = Date.now() + 3600000;
-  
-  
+
+
     // Guardar el token y la fecha de validez
     await usuario.save();
-  
+
     // URL de reestablecer contraseña
     const resetUrl = `http://${req.headers.host}/resetear_contrasena/${usuario.token}`;
 
@@ -97,8 +97,8 @@ exports.cerrarSesion = (req, res, next) => {
       text:
         "Has solicitado restablecer tu contraseña de Taskily! Autoriza el contenido HTML.",
     });
-  
-  
+
+
 
     req.flash(
       "success",
@@ -110,7 +110,7 @@ exports.cerrarSesion = (req, res, next) => {
 
 exports.validarToken = async (req, res, next) => {
   try {
-    
+
     const { token } = req.params;
 
     const usuario = await Usuario.findOne({

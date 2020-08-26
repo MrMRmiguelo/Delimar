@@ -54,8 +54,7 @@ module.exports = function () {
     //   delimarController.homeproductos
     // );
 
-    routes.get("/lista_producto", productosController.productosInv);
-
+  routes.get("/lista_producto", productosController.productosInv);
 
   routes.get("/reestablecer_contrasena", usuariosController.ReestablecerContrasena );
 
