@@ -2,7 +2,7 @@ const Producto = require("../models/productmodel");
 const { lista } = require("./delimarController");
 
 exports.agregarproducto = (req, res, next) => {
-    res.render("homeagregarproductos");
+    res.render("products/agregarproducto");
 };
 
 exports.homeagregarproductos = async(req, res, next) => {
@@ -22,7 +22,7 @@ exports.homeagregarproductos = async(req, res, next) => {
 
    //Si hay algun error
    if(errors.length){
-    res.render("homeagregarproductos", {
+    res.render("products/agregarproducto", {
         errors,
     });
    } else{
@@ -40,7 +40,7 @@ exports.homeagregarproductos = async(req, res, next) => {
             type: "alert-sucess",
         });
 
-        res.render("homeagregarproductos", {
+        res.render("products/gregarproducto", {
           errors,
         });
 
@@ -58,14 +58,14 @@ exports.productosInv = async(req, res , next) =>{
     const errors = [];
     try {
       const productos = await Producto.findAll();
-      res.render("lista", {productos});
+      res.render("products/lista", {productos});
 
     } catch (error) {
         errors.push({error: "Error al obtener los productos",
         type: "alert-warning"
         });
 
-        res.render("lista", errors);
+        res.render("products/lista", errors);
     }
 }
 
