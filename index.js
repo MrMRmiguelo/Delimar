@@ -57,83 +57,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
-
 var client_id = 'AaTkm8etF7Sv2tcpx7Rv6f7p2co6okcxSZcpjW0CgRbSpx1Qe0jImVRLgaQLMYHxz_EfnHd1eR-gTVaw';
 var secret = 'EE8Vi6CpRgxi7v0WPd-mkztA-aXTqKDTfOtmezIcYJ2ca3BqdkugjAWVDClem08mmshoG5vmSCd8fX4z';
 
 app.use(bodyParser.json());
 
-paypal.configure({
-  'mode': 'sandbox', //sandbox or live
-  'client_id': client_id,
-  'client_secret': secret
-});
-app.get('/create', function(req, res){
-  //build PayPal payment request
-  var total = cart.totalPrice;
-  var payReq = JSON.stringify({
-      'intent':'sale',
-      'redirect_urls':{
-          'return_url':'http://localhost:7000/process',
-          'cancel_url':'http://localhost:7000/cancel'
-      },
-      'payer':{
-          'payment_method':'paypal'
-      },
-      'transactions':[{
-          'amount':{
-              'total': '5',
-              'currency':'USD'
-          },
-          'description':'Para mas informacion contactarnos a nuestras redes sociales'
-      }]
-  });
-
-  paypal.payment.create(payReq, function(error, payment){
-      if(error){
-          console.error(error);
-      } else {
-          //capture HATEOAS links
-          var links = {};
-          payment.links.forEach(function(linkObj){
-              links[linkObj.rel] = {
-                  'href': linkObj.href,
-                  'method': linkObj.method
-              };
-          })
-
-          //if redirect url present, redirect user
-          if (links.hasOwnProperty('approval_url')){
-              res.redirect(links['approval_url'].href);
-          } else {
-              console.error('no redirect URI present');
-          }
-      }
-  });
-});
-
-app.get('/process', function(req, res){
-  var paymentId = req.query.paymentId;
-  var payerId = { 'payer_id': req.query.PayerID };
-
-  paypal.payment.execute(paymentId, payerId, function(error, payment){
-      if(error){
-          console.error(error);
-      } else {
-          if (payment.state == 'approved'){
-              res.send('pago realizado con exito');
-          } else {
-              res.send('El pago no fue realizado con exito, contactenos para mas informacion');
-          }
-      }
-  });
-});
-
 // Habilitar el uso de cookieParser
 app.use(cookieParser());
-
 
 // Habilitar las sesiones de usuario
 app.use(session({
