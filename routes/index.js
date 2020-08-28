@@ -71,25 +71,25 @@ module.exports = function () {
   routes.get("/compra", delimarController.compra);
   routes.post("/compra", delimarController.compra);
 
-  routes.get("/compra", productosController.compras);
-  routes.post("/compra", productosController.compras);
+  // routes.get("/compra", productosController.compras);
+  // routes.post("/compra", productosController.compras);
 
   //routes.get("/paypal_token", paypalController.generarTokenPaypal);
   //routes.post("/paypal_token", paypalController.generarPayoutPaypal);
-  routes.get('/add-to-cart/:id', function(req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-    Product.findById(productId, function(err, product) {
-       if (err) {
-           return res.redirect('/');
-       }
-        cart.add(product, product.id);
-        req.session.cart = cart;
-        console.log(req.session.cart);
-        res.redirect('/');
-    });
-});
+//   routes.get('/add-to-cart/:id', function(req, res, next) {
+//     var productId = req.params.id;
+//     var cart = new Cart(req.session.cart ? req.session.cart : {});
+//
+//     Product.findById(productId, function(err, product) {
+//        if (err) {
+//            return res.redirect('/');
+//        }
+//         cart.add(product, product.id);
+//         req.session.cart = cart;
+//         console.log(req.session.cart);
+//         res.redirect('/');
+//     });
+// });
 
 
   routes.get(
