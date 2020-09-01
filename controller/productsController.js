@@ -78,7 +78,7 @@ exports.obtenerProductoUrl = async(req, res, next) =>{
         url: req.params.url
       },
     });
-    res.render("verProducto", {producto: producto.dataValues});
+    res.render("products/verProducto", {producto: producto.dataValues});
 
   } catch (error) {
     res.redirect("/");
